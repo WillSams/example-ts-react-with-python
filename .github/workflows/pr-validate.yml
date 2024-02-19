@@ -37,8 +37,8 @@ jobs:
           --max-line-length=96 --statistics --per-file-ignore='specs/**/*:E9,F63,F7,F82'
     - name: Run pytest tests
       run: |
-        chmod +x ./backend/scripts/test.sh
-        cd backend && ./scripts/test.sh
+        chmod +x ./backend/scripts/test-coverage.sh
+        cd backend && ./scripts/test-coverage.sh
 
   unit-test-frontend:
     runs-on: ubuntu-latest
