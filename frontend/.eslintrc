@@ -1,0 +1,46 @@
+{
+  "extends": [
+    "eslint:recommended", 
+    "plugin:@typescript-eslint/recommended", 
+    "plugin:eslint-comments/recommended"
+  ],
+  "plugins": [
+    "@typescript-eslint", 
+    "eslint-comments", 
+    "@jambit/typed-redux-saga"
+  ],
+  "root": true,
+  "env": { "browser": true, "es6": true },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": { "project": "./tsconfig.json" },
+  "ignorePatterns": ["build","specs",".eslintrc"],
+  "settings": { "react": { "version": "18.2" } },
+  "rules": {
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/strict-boolean-expressions": "off",
+    "@typescript-eslint/no-floating-promises": "off",
+    "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "_" }],
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-empty-function": ["error", { "allow": ["methods", "arrowFunctions"] }],
+    "react/jsx-no-target-blank": "off",
+    "explicit-function-return-type": "off",
+    "strict-boolean-expressions": "off",
+    "no-floating-promises": "off",
+    "no-unused-vars": ["warn", { "argsIgnorePattern": "_" }],
+    "no-explicit-any": "off",
+    "no-empty-function": ["error", { "allow": ["methods", "arrowFunctions"] }],
+    "no-case-declarations": "off",
+    "no-console": "error",
+    "no-debugger": "error"  
+  },
+  "overrides": [
+      {
+          "files": ["./src/**/*.ts"],
+          "excludedFiles": ["./specs/**/*.spec.ts"],
+          "rules": {
+              "@jambit/typed-redux-saga/use-typed-effects": "error",
+              "@jambit/typed-redux-saga/delegate-effects": "error"
+          }
+      }
+  ]
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Example Site - Acme Hotels Guest Reservation System</title>
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/application.css" rel="stylesheet">
+  <link rel="shortcut icon" type="image/jpg" href="/img/favicon.ico">
+</head>
+
+<body>
+  <div class="container-fluid" id="default-container">
+    <div class="row content">
+      <div class="center-block">
+        <div class="col-md-12 full-area-content">
+          <div id="react-app"></div>
+          <script type="module" src="/src/main.tsx"></script>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="container-fluid navbar-dark bg-dark">
+    <div class="row">
+      <div class="col-md-4 footer-side center-block">
+        <span style="padding-left: 5px;">Pendleton, SC 29670</span>
+        <br>
+        <span class="fa fa-phone"></span>
+        <span style="padding-left: 5px;">864.555.5555</span>
+        <br>
+        <span class="fa fa-fax"></span>
+        <span style="padding-left: 5px;">888.555.5555</span>
+      </div>
+      <div class="col-md-4 footer-side center-block">
+        <span>
+          <a class="social-icon-md fa fa-envelope" href="/contact" target="_blank" aria-label="Email"></a>
+          <a class="social-icon-md fa fa-google" href="" target="_blank" aria-label="Google"></a>
+          <a class="social-icon-md fa fa-twitter" href="" target="_blank" aria-label="Twitter"></a>
+          <a class="social-icon-md fa fa-instagram" href="" target="_blank" aria-label="Instagram"></a>
+        </span>
+        <br>          
+            Copyright &copy; <span id="copyright-year"></span> Sams Webs Consulting
+        <br>
+        Site by <a class="site" href="http://www.samswebs.com">Sams Webs</a>
+      </div>
+      <div class="col-md-4 footer-side center-block">
+        <span class="fa fa-gavel">
+          <a class="anchor-fa" href="/terms">Terms &amp; Conditons</a>
+        </span>
+        <br>
+        <span class="fa fa-gavel">
+          <a class="anchor-fa" href="/privacy">Privacy Policy</a>
+        </span>
+        <br>
+        <span class="fa fa-lock"></span>
+        <a class="anchor-fa" href="/auth/signin">Sign In</a>
+      </div>
+    </div>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.9.8/holder.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      const currentYear = new Date().getFullYear();
+      $('#copyright-year').text(currentYear);
+    });
+  </script>
+</body>
+
+</html>
+
+

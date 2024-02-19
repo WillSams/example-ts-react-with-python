@@ -1,0 +1,238 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+body {
+  font-family: 'Lato', sans-serif;
+  src: url("//fonts.googleapis.com/css?family=Lato") format("truetype");
+  background-position: center center;
+  background-attachment: fixed;
+  -webkit-background-size: auto 100%;
+  -moz-background-size: auto 100%;
+  -o-background-size: auto 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: linear-gradient(rgba(34, 174, 74, 0.375), rgba(34, 174, 74, 0.375)), url("/img/default-bkg.jpg");
+  margin: 0;
+  margin-top: 55px;
+  color: #000;
+  font-weight: bolder;
+  background-color: #fff;
+  font-size: 18px;
+}
+#react-app {
+  margin-top: 100px;
+}
+/* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+.row.content {
+  height: 1500px 
+}
+body h1, body h2, body h3 {
+  font-weight: 700;
+}
+.site-heading {
+  font-weight: 100;
+  text-align: center;
+  color: #000;
+}
+.site {
+  font-family: 'Permanent Marker','Montserrat';
+  src: url("//fonts.googleapis.com/css?family=Permanent+Marker|Montserrat") format("truetype");
+  color: #fff;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+.site:hover {
+  color: #000;
+}
+body a {
+  text-decoration: none;
+}
+body a:link {
+  text-decoration: none;
+  color: #87aab9;
+}
+body a:visited {
+  text-decoration: none;
+  color: #87aab9;
+}
+body a:hover {
+  text-decoration: none;
+  color: #fff;
+}
+.row.content {
+  height: 1500px;
+}
+.navbar {
+  color: #555;
+}
+.highlighted {
+  color: #e9e581;
+}
+body hr {
+  color: #fff;
+  background-color: #000;
+}
+#countDown {
+  background-color: rgba(100, 111, 111, 0.75);
+}
+.white-text {
+  color: #fff;
+}
+.black-text {
+  color: #000;
+}
+.gold-text {
+  color: #e9e581;
+}
+.red-background {
+  background-color: rgba(204,0,0,.85);
+  color: #fff;
+}
+.black-background {
+  background-color: rgba(255, 255, 255, 0.75);
+  color: #fff;
+}
+.white-background {
+  background-color: #fff;
+  color: #555;
+}
+.gold-background {
+  background-color: rgba(233, 229, 129, 0.75);
+  color: #555;
+}
+.full-area-content {
+  padding-top: 35px;
+  padding-bottom: 220px;
+  /* height: auto; */
+  margin: auto;
+  display: block;
+}
+body a.anchor-fa {
+  padding-left: 5px;
+}
+.btn-xl {
+  padding: 1rem 1.75rem;
+}
+.center-block {
+  margin: auto;
+  display: block;
+  text-align: center;
+}
+.social-icon-lg, .social-icon-md, .social-icon-sm {
+  padding: 10px;
+}
+.social-icon-sm {
+  font-size: 10px;
+}
+.social-icon-md {
+  font-size: 20px;
+}
+.social-icon-lg {
+  font-size: 30px;
+}
+.rounded {
+  padding: 5px 5px;
+  border-radius: .25rem !important;
+}
+.back-to-top {
+  position: fixed;
+  display: none;
+  background: rgba(222, 27, 27, 0.85);
+  color: #fff;
+  padding: 6px 12px 9px 12px;
+  border-radius: 2px;
+  right: 15px;
+  bottom: 15px;
+  transition: background 0.5s;
+  z-index: 1000;
+}
+.back-to-top:focus {
+  background: #fff;
+  color: #000;
+  outline: none;
+}
+.back-to-top:hover {
+  background: rgba(222, 27, 27, 0.85);
+  color: #fff;
+}
+#main-content #announcements-area, #main-content #schedules-area, 
+#main-content #fields-area, #main-content #sponsors-area, 
+#main-content #calendar-area {
+  background-color: rgba(0, 0, 0, 0.85); 
+}
+html #contact-content {
+  background-color: rgba(255, 255, 255, 0.75);
+  color: #fff; 
+}
+#contact-content h2, #contact-content h3 {
+    color: #fff;
+   }
+#terms-content, #privacy-content {
+  font-size: 12px; 
+}
+#default-container #reservations-section, #default-container #stats-section {
+  margin: 15px;
+  height: 1100px;
+}
+.reservation-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  transition: all ease-in-out 0.4s;
+}
+.reservation-item {
+  overflow: hidden;
+  position: relative;
+  padding: 0;
+  vertical-align: middle;
+  text-align: center;
+}
+.reservation-item h5 {
+  color: #fff;
+  margin: 0;
+  text-transform: capitalize;
+  font-weight: 700;
+}
+.reservation-item img {
+  transition: all ease-in-out 0.4s;
+  width: 100%;
+}
+.reservation-item:hover img {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+.reservation-item:hover .reservation-overlay {
+  opacity: 1;
+  background: #555;
+}
+.reservation-info {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+body footer {
+  background-color: #555;
+  color: #fff;
+  padding: 15px;
+  margin: auto auto;
+  text-align: center;
+}
+@media print, screen and (min-width: 37.5em) {
+  .full-area-content {
+      padding-top: 50px;
+      padding-bottom: 155px;
+ }
+  .row.content {
+      height: auto;
+ }
+  body footer[class*="col-md-8"].pull-right {
+      float: none;
+ }
+}

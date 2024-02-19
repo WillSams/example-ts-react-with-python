@@ -1,0 +1,6 @@
+pytest.init
+run_tests.sh
+Dockerfile
+specs/
+logs/
+.pytest_cache

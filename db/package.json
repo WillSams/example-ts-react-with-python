@@ -1,0 +1,14 @@
+{
+  "type": "module",
+  "scripts": {
+    "refresh": "npm run rollback && npm run migrate && npm run seed",
+    "seed": "node_modules/.bin/knex seed:run",
+    "unlock": "node_modules/.bin/knex migrate:unlock",
+    "migrate": "node_modules/.bin/knex migrate:latest",
+    "rollback": "node_modules/.bin/knex migrate:rollback"
+  },
+  "dependencies": {
+    "knex": "^2.4.2",
+    "pg": "^8.9.0"
+  }
+}

@@ -1,0 +1,18 @@
+version: "3.8"
+services:
+  hotel-db:
+    image: postgres:14.2-alpine
+    container_name: hotel-db
+    environment:
+      - POSTGRES_USER=${PG_USER}
+      - POSTGRES_PASSWORD=${PG_PASSWD}
+      - POSTGRES_DB=${PG_NAME}
+    ports:
+      - "${PG_PORT}:5432"
+    volumes:
+      - hotel-db-data:/var/lib/postgresql/data
+    command: ["postgres", "-c", "listen_addresses=*"]
+volumes:
+  hotel-db-data:
+networks:
+  hotel-network:
