@@ -2,7 +2,7 @@
 
 **TypeScript, Vite, Reactjs, Redux Toolkit, Redux Sagas, Python, FastAPI, GraphQL, AsyncPG, Postgres**
 
-[![Application Unit Tests](https://github.com/WillSams/example-ts-react-with-python/actions/workflows/pr-validate.yml/badge.svg)](https://github.com/WillSams/eexample-ts-react-with-python/actions/workflows/pr-validate.yml)
+[![Application Unit Tests](https://github.com/WillSams/example-ts-react-with-python/actions/workflows/pr-validate.yml/badge.svg)](https://github.com/WillSams/example-ts-react-with-python/actions/workflows/pr-validate.yml)
 
 This example contains a frontend and backend:
 
