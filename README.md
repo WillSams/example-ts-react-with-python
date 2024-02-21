@@ -134,7 +134,7 @@ You can also acces the Ariadne GraphiQL (interactive test playground) instance a
 
 ## Testing
 
-Both the backend and frontend utilizes [Jest](https://jestjs.io/).  To run these tests, simply execute `npm run test:frontend` or `npm run test:backend`.
+The backend uses [Pytest](https://docs.pytest.org) and the frontend uses [Jest](https://jestjs.io/).  To run these tests, simply execute `npm run test:backend` or `npm run test:frontend', respectively.
 
 ## Containerization
 
