@@ -52,12 +52,12 @@ const HomeComponent: React.FC<HomeComponentProps> = ({
         <Tab.Container defaultActiveKey="reservations">
           <Row className="nav nav-tabs ml-4">
             <Nav className="bg-dark">
-              <Col lg={7}>
+              <Col lg={6}>
                 <Nav.Item>
                   <Nav.Link eventKey="reservations">Reservations</Nav.Link>
                 </Nav.Item>
               </Col>
-              <Col lg={5}>
+              <Col lg={6}>
                 <Nav.Item>
                   <Nav.Link eventKey="about">About</Nav.Link>
                 </Nav.Item>
