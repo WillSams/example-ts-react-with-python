@@ -1,8 +1,11 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import { Loading } from '@/shared/components';
 import { default as utils } from '@/shared/utils';
+import { RootState } from '@/rootReducer';
 
 interface Reservation {
   id: number;
@@ -24,12 +27,17 @@ const DefaultTab: React.FC<DefaultTabProps> = ({
   actions = { cancelReservation: () => {} },
 }) => {
   const { cancelReservation } = actions;
+  const loading = useSelector((state: RootState) => state?.site?.home?.loading);
   return (
     <div data-name="reservations-tab">
       <div className="col-lg-12 bg-dark mx-auto">
         <h3>Reservations</h3>
         <div className="container flex-column">
-          {reservations.length > 0 ? (
+          {loading && reservations.length === 0 && <Loading />}
+          {!loading && reservations.length === 0 && (
+            <div>No reservations exist.</div>
+          )}
+          {reservations.length > 0 && (
             <table className="table bg-light">
               <thead>
                 <tr>
@@ -80,8 +88,6 @@ const DefaultTab: React.FC<DefaultTabProps> = ({
                 ))}
               </tbody>
             </table>
-          ) : (
-            <div>No reservations exist.</div>
           )}
         </div>
       </div>
