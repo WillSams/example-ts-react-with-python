@@ -101,7 +101,16 @@ default-container {
   margin: 15px;
   height: 1100px;
 }
+.navbar {
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: #fff;
+}
 body footer {
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-top-color: #fff;
+  font-size: 10px;
   background-color: #555;
   color: #fff;
   padding: 15px;
