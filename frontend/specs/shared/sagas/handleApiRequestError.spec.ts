@@ -1,6 +1,6 @@
 import { expectSaga } from 'redux-saga-test-plan';
 
-import { actionTypes } from '@/shared/base';
+import { actionCreators } from '@/shared/base';
 import saga from '@/shared/sagas/handleApiRequestError';
 
 describe('handleApiRequestError Saga', () => {
@@ -12,11 +12,11 @@ describe('handleApiRequestError Saga', () => {
 
     await expectSaga(saga)
       .dispatch({
-        type: actionTypes.API_REQUEST_ERROR,
+        type: actionCreators.API_REQUEST_ERROR,
         error,
       })
       .put({
-        type: actionTypes.SET_ALERT,
+        type: actionCreators.SET_ALERT,
         message: `Oops! Something went wrong. ${error?.name}:  ${error?.message}`,
         alertType: 'danger',
       })

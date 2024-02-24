@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 import { Store } from 'redux';
 
-import { actionTypes } from '@/shared/base';
+import { actionCreators } from '@/shared/base';
 
 let instance: any = null;
 
@@ -17,25 +17,25 @@ const createInstance = (url: string, token: string) => {
 };
 
 const handleRequest = (config: any, store: Store) => {
-  store.dispatch({ type: actionTypes.API_REQUEST });
+  store.dispatch({ type: actionCreators.API_REQUEST });
   return config;
 };
 
 const handleRequestError = (error: any, store: Store) => {
-  store.dispatch({ type: actionTypes.API_REQUEST_ERROR, error });
+  store.dispatch({ type: actionCreators.API_REQUEST_ERROR, error });
   return Promise.reject(error);
 };
 
 const handleResponse = (response: any, store: Store) => {
-  store.dispatch({ type: actionTypes.API_REQUEST_DONE });
+  store.dispatch({ type: actionCreators.API_REQUEST_DONE });
   return response?.data || response;
 };
 
 const handleResponseError = (error: any, store: Store) => {
   const { message, name } = error;
-  store.dispatch({ type: actionTypes.API_REQUEST_DONE });
+  store.dispatch({ type: actionCreators.API_REQUEST_DONE });
   store.dispatch({
-    type: actionTypes.API_REQUEST_ERROR,
+    type: actionCreators.API_REQUEST_ERROR,
     error: { message, name },
   });
   return Promise.reject(error);

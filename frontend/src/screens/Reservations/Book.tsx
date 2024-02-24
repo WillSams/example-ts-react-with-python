@@ -3,7 +3,7 @@ import { Dispatch } from 'redux';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { ConnectComponent, actionTypes } from '@/shared/base';
+import { ConnectComponent, actionCreators } from '@/shared/base';
 import AlertModal from '@/shared/components/AlertModal';
 import { RootState } from '@/rootReducer';
 
@@ -125,15 +125,15 @@ const BookReservationComponent = ({
 };
 
 const screen = ConnectComponent(BookReservationComponent, {
-  componentName: actionTypes.BOOK_RESERVATION_COMPONENT,
+  componentName: actionCreators.BOOK_RESERVATION_COMPONENT,
   state: (state: RootState) => state?.site?.newReservations?.roomIds,
   load: {
-    roomIds: () => ({ type: actionTypes.GET_ROOM_IDS }),
+    roomIds: () => ({ type: actionCreators.GET_ROOM_IDS }),
   },
   dispatch: (dispatch: Dispatch) => ({
     createReservation: (formData: any) =>
-      dispatch({ type: actionTypes.CREATE_RESERVATION, input: formData }),
-    handleCloseAlert: () => dispatch({ type: actionTypes.CLEAR_ALERT }),
+      dispatch({ type: actionCreators.CREATE_RESERVATION, input: formData }),
+    handleCloseAlert: () => dispatch({ type: actionCreators.CLEAR_ALERT }),
   }),
 });
 

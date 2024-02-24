@@ -1,4 +1,4 @@
-export { actionTypes } from './actionTypes';
+export { actionCreators } from './actionCreators';
 export { ConnectComponent } from './ConnectComponent';
 export { createBaseApi, getBaseApi } from './baseApi';
 export { createComponentReducer } from './createComponentReducer';
@@ -8,4 +8,4 @@ export { onLoad } from './reducerEvents';
 export { onUnload } from './reducerEvents';
 export { onSuccessful } from './reducerEvents';
 
-export type { ActionTypes } from './actionTypes';
+export type { ActionTypes } from './actionCreators';

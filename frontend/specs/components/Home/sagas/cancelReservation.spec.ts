@@ -3,7 +3,7 @@ import { call } from 'redux-saga/effects';
 import { throwError } from 'redux-saga-test-plan/providers';
 
 import {
-  actionTypes,
+  actionCreators,
   onCancellation,
   onFailure,
   onSuccessful,
@@ -19,7 +19,7 @@ describe('cancelReservation Saga', () => {
   let scenario: any;
 
   const action: DeleteReservationAction = {
-    type: actionTypes.DELETE_RESERVATION,
+    type: actionCreators.DELETE_RESERVATION,
     reservationId: 999,
   };
   const expectedRequestParams = { reservationId: action.reservationId };
@@ -56,13 +56,13 @@ describe('cancelReservation Saga', () => {
         [call(confirmation, action.reservationId), true],
       ])
       .put({
-        type: onSuccessful(actionTypes.DELETE_RESERVATION),
+        type: onSuccessful(actionCreators.DELETE_RESERVATION),
         response: {
           data: expectedApiResponse,
         },
       })
       .put({
-        type: actionTypes.SET_ALERT,
+        type: actionCreators.SET_ALERT,
         alertType: 'success',
         message: 'Reservation cancelled.',
       })
@@ -73,7 +73,7 @@ describe('cancelReservation Saga', () => {
     return scenario
       .provide([[call(confirmation, action.reservationId), false]])
       .put({
-        type: onCancellation(actionTypes.REJECT_CONFIRMATION_MODAL),
+        type: onCancellation(actionCreators.REJECT_CONFIRMATION_MODAL),
       })
       .silentRun();
   });
@@ -98,12 +98,12 @@ describe('cancelReservation Saga', () => {
         ],
       ])
       .put({
-        type: onFailure(actionTypes.DELETE_RESERVATION),
+        type: onFailure(actionCreators.DELETE_RESERVATION),
         alertType: 'danger',
         message: expectedErrMessage,
       })
       .put({
-        type: actionTypes.SET_ALERT,
+        type: actionCreators.SET_ALERT,
         alertType: 'danger',
         message: expectedErrMessage,
       })
@@ -122,12 +122,12 @@ describe('cancelReservation Saga', () => {
         [call(confirmation, action.reservationId), true],
       ])
       .put({
-        type: onFailure(actionTypes.DELETE_RESERVATION),
+        type: onFailure(actionCreators.DELETE_RESERVATION),
         alertType: 'danger',
         message: expectedErrMessage,
       })
       .put({
-        type: actionTypes.SET_ALERT,
+        type: actionCreators.SET_ALERT,
         alertType: 'danger',
         message: expectedErrMessage,
       })

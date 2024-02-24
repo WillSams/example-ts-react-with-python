@@ -1,11 +1,13 @@
 import reducer, { initialState } from '../../src/shared/sharedReducer'; // Replace 'yourReducer' with the actual file path
-import { actionTypes, } from '../../src/shared/base';
+import { actionCreators } from '../../src/shared/base';
 
 describe('sharedReducer tests', () => {
-  beforeEach(() => { jest.clearAllMocks(); });
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
 
   it('should handle API_REQUEST action', () => {
-    const action = { type: actionTypes.API_REQUEST, };
+    const action = { type: actionCreators.API_REQUEST };
     const newState = reducer(initialState, action);
 
     expect(newState.requestInProgress).toBe(true);
@@ -13,7 +15,7 @@ describe('sharedReducer tests', () => {
   });
 
   it('should handle API_REQUEST_DONE action', () => {
-    const action = { type: actionTypes.API_REQUEST_DONE, };
+    const action = { type: actionCreators.API_REQUEST_DONE };
 
     const newState = reducer(initialState, action);
 
@@ -23,7 +25,7 @@ describe('sharedReducer tests', () => {
 
   it('should handle SET_ALERT action', () => {
     const action = {
-      type: actionTypes.SET_ALERT,
+      type: actionCreators.SET_ALERT,
       message: 'Sample alert message',
       alertType: 'success',
     };
@@ -36,7 +38,7 @@ describe('sharedReducer tests', () => {
 
   it('should handle CLEAR_ALERT action', () => {
     const action = {
-      type: actionTypes.CLEAR_ALERT,
+      type: actionCreators.CLEAR_ALERT,
     };
 
     const stateWithAlert = {
@@ -53,7 +55,7 @@ describe('sharedReducer tests', () => {
 
   it('should handle OPEN_CONFIRMATION_MODAL action', () => {
     const action = {
-      type: actionTypes.OPEN_CONFIRMATION_MODAL,
+      type: actionCreators.OPEN_CONFIRMATION_MODAL,
       title: 'Confirmation Title',
       message: 'Are you sure?',
       text: 'Confirm',
@@ -72,7 +74,7 @@ describe('sharedReducer tests', () => {
   });
 
   it('should handle unknown action type', () => {
-    const action = { type: 'UNKNOWN_ACTION_TYPE', };
+    const action = { type: 'UNKNOWN_ACTION_TYPE' };
     const newState = reducer(initialState, action);
 
     expect(newState).toEqual(initialState);
@@ -80,7 +82,7 @@ describe('sharedReducer tests', () => {
 
   it('should handle LOAD_COMPONENT action', () => {
     const action = {
-      type: actionTypes.LOAD_COMPONENT,
+      type: actionCreators.LOAD_COMPONENT,
     };
 
     const newState = reducer(initialState, action);
@@ -91,7 +93,7 @@ describe('sharedReducer tests', () => {
 
   it('should handle COMPONENT_NOT_FOUND action', () => {
     const action = {
-      type: actionTypes.COMPONENT_NOT_FOUND,
+      type: actionCreators.COMPONENT_NOT_FOUND,
     };
 
     const newState = reducer(initialState, action);
@@ -100,5 +102,3 @@ describe('sharedReducer tests', () => {
     expect(newState.componentNotFound).toBe(true);
   });
 });
-
-

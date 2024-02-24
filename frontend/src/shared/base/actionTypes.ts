@@ -95,7 +95,7 @@ interface ActionTypes {
   VIEW_RESERVATION_COMPONENT: string;
 }
 
-export const actionTypes: ActionTypes = {
+export const actionCreators: ActionTypes = {
   LOAD_COMPONENT: 'shared/LOAD_COMPONENT',
   COMPONENT_NOT_FOUND: 'shared/COMPONENT_NOT_FOUND',
   UNLOAD_COMPONENT: 'shared/UNLOAD_COMPONENT',

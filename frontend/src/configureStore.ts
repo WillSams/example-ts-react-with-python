@@ -5,7 +5,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { createReduxHistoryContext } from 'redux-first-history';
 import { createBrowserHistory, History } from 'history';
 
-import { actionTypes } from '@/shared/base';
+import { actionCreators } from '@/shared/base';
 
 import rootReducer from './rootReducer';
 import rootSaga from './rootSaga';
@@ -21,7 +21,7 @@ const logger = createLogger({
   collapsed: true,
   predicate: (getState, action) =>
     import.meta.env.VITE_ENV === 'development' &&
-    ![actionTypes.API_REQUEST, actionTypes.API_REQUEST_DONE].includes(
+    ![actionCreators.API_REQUEST, actionCreators.API_REQUEST_DONE].includes(
       action.type,
     ),
 });
