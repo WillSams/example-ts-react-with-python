@@ -62,7 +62,7 @@ curl http://localhost:$RESERVATION_PORT/development/graphql \
 
 Navigate to [http://localhost:$RESERVATION_PORT/docs](http://localhost:$RESERVATION_PORT/docs).
 
-![text](./frontend/src/public/img/openapi_example.png)
+![text](./frontend/public/img/openapi_example.png)
 
 ## Pre-requisites
 
@@ -79,7 +79,7 @@ The below are optional but highly recommended:
 
 ## Getting Started
 
-First, we'll need to set up our environment variables.  You can do this by either any of the methods mentioned in [/tools/ENV.md](./tools/ENV.md) but I recommend using [Direnv](https://direnv.net/).
+First, we'll need to set up our environment variables.  You can do this by the methods mentioned in [/tools/ENV.md](./tools/ENV.md) but I recommend using [Direnv](https://direnv.net/).
 
 ### Install Python Packages
 
