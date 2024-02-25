@@ -130,7 +130,7 @@ const screen = ConnectComponent(BookReservationComponent, {
   load: {
     roomIds: () => ({ type: actionTypes.GET_ROOM_IDS }),
   },
-  dispatch: (dispatch: Dispatch) => ({
+  actionCreators: (dispatch: Dispatch) => ({
     createReservation: (formData: any) =>
       dispatch({ type: actionTypes.CREATE_RESERVATION, input: formData }),
     handleCloseAlert: () => dispatch({ type: actionTypes.CLEAR_ALERT }),
