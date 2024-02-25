@@ -3,7 +3,7 @@ import { waitFor } from '@testing-library/react';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
-import { actionCreators, createBaseApi } from '@/shared/base';
+import { actionTypes, createBaseApi } from '@/shared/base';
 
 describe('baseApi', () => {
   const url: string = process.env.RESERVATION_API || '';
@@ -36,10 +36,10 @@ describe('baseApi', () => {
     await baseApi.get('/test');
     await waitFor(() => {
       expect(mockStore.dispatch).toHaveBeenCalledWith({
-        type: actionCreators.API_REQUEST,
+        type: actionTypes.API_REQUEST,
       });
       expect(mockStore.dispatch).toHaveBeenCalledWith({
-        type: actionCreators.API_REQUEST_DONE,
+        type: actionTypes.API_REQUEST_DONE,
       });
     });
   });

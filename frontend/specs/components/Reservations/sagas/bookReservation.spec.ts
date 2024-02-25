@@ -2,7 +2,7 @@ import { expectSaga } from 'redux-saga-test-plan';
 import { call } from 'redux-saga/effects';
 import { throwError } from 'redux-saga-test-plan/providers';
 
-import { actionCreators, onFailure, onSuccessful } from '@/shared/base';
+import { actionTypes, onFailure, onSuccessful } from '@/shared/base';
 import {
   fetchQuery,
   createReservationMutation,
@@ -17,7 +17,7 @@ describe('newReservation Saga', () => {
   let scenario: any;
 
   const action: BookReservationAction = {
-    type: actionCreators.CREATE_RESERVATION,
+    type: actionTypes.CREATE_RESERVATION,
     input: {
       room_id: 'room1',
       checkin_date: '2024-01-01',
@@ -49,12 +49,12 @@ describe('newReservation Saga', () => {
         ],
       ])
       .put({
-        type: actionCreators.SET_ALERT,
+        type: actionTypes.SET_ALERT,
         alertType: 'success',
         message: 'Reservation created.',
       })
       .put({
-        type: onSuccessful(actionCreators.CREATE_RESERVATION),
+        type: onSuccessful(actionTypes.CREATE_RESERVATION),
         response: {
           data: mockResponse.data.createReservation.reservations,
         },
@@ -87,7 +87,7 @@ describe('newReservation Saga', () => {
         message: expectedErrMessage,
       })
       .put({
-        type: actionCreators.SET_ALERT,
+        type: actionTypes.SET_ALERT,
         alertType,
         message: expectedErrMessage,
       })
@@ -112,7 +112,7 @@ describe('newReservation Saga', () => {
         message: expectedErrMessage,
       })
       .put({
-        type: actionCreators.SET_ALERT,
+        type: actionTypes.SET_ALERT,
         alertType,
         message: expectedErrMessage,
       })

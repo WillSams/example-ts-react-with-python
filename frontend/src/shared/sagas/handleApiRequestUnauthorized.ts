@@ -1,14 +1,14 @@
 import { put, takeLatest } from 'typed-redux-saga';
 
-import { actionCreators } from '@/shared/base';
+import { actionTypes } from '@/shared/base';
 
 export function* handleApiRequestUnauthorized() {
-  yield* put({ type: actionCreators.LOGOUT });
+  yield* put({ type: actionTypes.LOGOUT });
 }
 
 function* handleApiRequestUnauthorizedSaga() {
   yield* takeLatest(
-    actionCreators.API_REQUEST_UNAUTHORIZED,
+    actionTypes.API_REQUEST_UNAUTHORIZED,
     handleApiRequestUnauthorized,
   );
 }

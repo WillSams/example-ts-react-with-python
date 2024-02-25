@@ -1,6 +1,6 @@
 import { call, put, takeLatest } from 'typed-redux-saga';
 
-import { actionCreators } from '@/shared/base';
+import { actionTypes } from '@/shared/base';
 
 interface LoadComponentAction {
   type: string;
@@ -12,7 +12,7 @@ export const loadComponent = async (action: LoadComponentAction) => {
 };
 
 function* saga() {
-  const actionType = actionCreators.LOAD_COMPONENT;
+  const actionType = actionTypes.LOAD_COMPONENT;
   yield* takeLatest(actionType, function* (action: LoadComponentAction) {
     yield* put({
       type: `LOAD_${action.componentName}`,

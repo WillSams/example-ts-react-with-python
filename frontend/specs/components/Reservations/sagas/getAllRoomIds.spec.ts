@@ -2,7 +2,7 @@ import { expectSaga } from 'redux-saga-test-plan';
 import { call } from 'redux-saga/effects';
 import { throwError } from 'redux-saga-test-plan/providers';
 
-import { actionCreators, onFailure, onSuccessful } from '@/shared/base';
+import { actionTypes, onFailure, onSuccessful } from '@/shared/base';
 import {
   fetchQuery,
   getRoomIdsQuery,
@@ -16,7 +16,7 @@ import getAllRoomIds, {
 describe('getAllRoomIds Saga', () => {
   let scenario: any;
 
-  const action: GetRoomIdsAction = { type: actionCreators.GET_ROOM_IDS };
+  const action: GetRoomIdsAction = { type: actionTypes.GET_ROOM_IDS };
   const expectedRequestParams = {};
   const mockRooms = [{ id: 'room1' }, { id: 'room2' }, { id: 'room3' }];
 
@@ -78,7 +78,7 @@ describe('getAllRoomIds Saga', () => {
         message: expectedErrMessage,
       })
       .put({
-        type: actionCreators.SET_ALERT,
+        type: actionTypes.SET_ALERT,
         alertType,
         message: expectedErrMessage,
       })
@@ -104,7 +104,7 @@ describe('getAllRoomIds Saga', () => {
         message: expectedErrMessage,
       })
       .put({
-        type: actionCreators.SET_ALERT,
+        type: actionTypes.SET_ALERT,
         alertType,
         message: expectedErrMessage,
       })

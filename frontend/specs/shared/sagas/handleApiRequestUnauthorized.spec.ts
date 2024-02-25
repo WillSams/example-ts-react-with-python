@@ -3,19 +3,19 @@ import { takeLatest } from 'redux-saga/effects';
 
 import { default as sharedSagas } from '../../../src/shared/sagas';
 import { handleApiRequestUnauthorized } from '../../../src/shared/sagas/handleApiRequestUnauthorized';
-import { actionCreators } from '../../../src/shared/base';
+import { actionTypes } from '../../../src/shared/base';
 
 describe('handleApiRequestUnauthorized Saga', () => {
   it('should dispatch the LOGOUT action', () => {
     return expectSaga(handleApiRequestUnauthorized)
-      .put({ type: actionCreators.LOGOUT })
+      .put({ type: actionTypes.LOGOUT })
       .run();
   });
 
   /*it('should be invoked by latest API_REQUEST_UNAUTHORIZED dispatch', () => {
     return expectSaga(sharedSagas)
       .provide([
-        [takeLatest(actionCreators.API_REQUEST_UNAUTHORIZED, handleApiRequestUnauthorized)],
+        [takeLatest(actionTypes.API_REQUEST_UNAUTHORIZED, handleApiRequestUnauthorized)],
       ])
       .silentRun();
   });*/

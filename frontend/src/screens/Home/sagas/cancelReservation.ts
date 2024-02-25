@@ -1,7 +1,7 @@
 import { call, take, takeLatest, put, race } from 'typed-redux-saga';
 
 import {
-  actionCreators,
+  actionTypes,
   onCancellation,
   onFailure,
   onSuccessful,
@@ -19,7 +19,7 @@ type DeleteReservationAction = {
 
 export function* confirmation(reservationId: number) {
   yield* put({
-    type: actionCreators.OPEN_CONFIRMATION_MODAL,
+    type: actionTypes.OPEN_CONFIRMATION_MODAL,
     title: 'Are you sure you?',
     message: `You will not be able to  reverse cancellation (id: ${reservationId}).`,
     cancellationText: 'Cancel',
@@ -27,8 +27,8 @@ export function* confirmation(reservationId: number) {
   });
 
   const { confirm } = yield* race({
-    confirm: take(actionCreators.CONFIRM_CONFIRMATION_MODAL),
-    no: take(actionCreators.REJECT_CONFIRMATION_MODAL),
+    confirm: take(actionTypes.CONFIRM_CONFIRMATION_MODAL),
+    no: take(actionTypes.REJECT_CONFIRMATION_MODAL),
   });
 
   return confirm;
@@ -39,7 +39,7 @@ export function* cancelReservation(action: DeleteReservationAction) {
     const confirm = yield* call(confirmation, action.reservationId);
     if (!confirm) {
       yield* put({
-        type: onCancellation(actionCreators.REJECT_CONFIRMATION_MODAL),
+        type: onCancellation(actionTypes.REJECT_CONFIRMATION_MODAL),
       });
       return;
     } else {
@@ -59,13 +59,13 @@ export function* cancelReservation(action: DeleteReservationAction) {
       else {
         const { reservations } = data.deleteReservation || [];
         yield* put({
-          type: onSuccessful(actionCreators.DELETE_RESERVATION),
+          type: onSuccessful(actionTypes.DELETE_RESERVATION),
           response: {
             data: reservations,
           },
         });
         yield* put({
-          type: actionCreators.SET_ALERT,
+          type: actionTypes.SET_ALERT,
           alertType: 'success',
           message: 'Reservation cancelled.',
         });
@@ -74,12 +74,12 @@ export function* cancelReservation(action: DeleteReservationAction) {
   } catch (ex) {
     const message = `Could not delete reservation.  ${ex}`;
     yield* put({
-      type: onFailure(actionCreators.DELETE_RESERVATION),
+      type: onFailure(actionTypes.DELETE_RESERVATION),
       alertType: 'danger',
       message,
     });
     yield* put({
-      type: actionCreators.SET_ALERT,
+      type: actionTypes.SET_ALERT,
       alertType: 'danger',
       message,
     });
@@ -87,7 +87,7 @@ export function* cancelReservation(action: DeleteReservationAction) {
 }
 
 function* saga() {
-  yield* takeLatest(actionCreators.DELETE_RESERVATION, cancelReservation);
+  yield* takeLatest(actionTypes.DELETE_RESERVATION, cancelReservation);
 }
 
 export default saga;

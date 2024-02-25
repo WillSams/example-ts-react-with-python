@@ -2,7 +2,7 @@ import { expectSaga } from 'redux-saga-test-plan';
 import { call } from 'redux-saga/effects';
 import { throwError } from 'redux-saga-test-plan/providers';
 
-import { actionCreators, onFailure, onSuccessful } from '@/shared/base';
+import { actionTypes, onFailure, onSuccessful } from '@/shared/base';
 import { fetchQuery, getExistingReservationsQuery } from '@/shared/graphql';
 
 import getAllReservations, {
@@ -13,7 +13,7 @@ describe('getAllReservations Saga', () => {
   let scenario: any;
 
   const action: GetAllReservationsAction = {
-    type: actionCreators.GET_RESERVATIONS,
+    type: actionTypes.GET_RESERVATIONS,
   };
   const expectedRequestParams = {};
 
@@ -79,7 +79,7 @@ describe('getAllReservations Saga', () => {
         message: expectedErrMessage,
       })
       .put({
-        type: actionCreators.SET_ALERT,
+        type: actionTypes.SET_ALERT,
         alertType,
         message: expectedErrMessage,
       })
@@ -103,7 +103,7 @@ describe('getAllReservations Saga', () => {
         message: expectedErrMessage,
       })
       .put({
-        type: actionCreators.SET_ALERT,
+        type: actionTypes.SET_ALERT,
         alertType,
         message: expectedErrMessage,
       })

@@ -4,7 +4,7 @@ import { Dispatch } from 'redux';
 import { useSelector } from 'react-redux';
 
 import { RootState } from '@/rootReducer';
-import { actionCreators, ConnectComponent } from '@/shared/base';
+import { actionTypes, ConnectComponent } from '@/shared/base';
 import { AlertModal, ConfirmationModal } from '@/shared/components';
 
 import HomeTabs from './tabs';
@@ -98,29 +98,29 @@ const HomeComponent: React.FC<HomeComponentProps> = ({
 };
 
 const screen = ConnectComponent(HomeComponent, {
-  componentName: actionCreators.HOME_COMPONENT,
+  componentName: actionTypes.HOME_COMPONENT,
   state: (state: RootState) => state?.site?.home?.reservations ?? [],
   load: {
-    reservations: () => ({ type: actionCreators.GET_RESERVATIONS }),
+    reservations: () => ({ type: actionTypes.GET_RESERVATIONS }),
   },
   dispatch: (dispatch: Dispatch) => ({
-    handleCloseAlert: () => dispatch({ type: actionCreators.CLEAR_ALERT }),
+    handleCloseAlert: () => dispatch({ type: actionTypes.CLEAR_ALERT }),
     handleConfirmAction: () =>
-      dispatch({ type: actionCreators.CONFIRM_CONFIRMATION_MODAL }),
+      dispatch({ type: actionTypes.CONFIRM_CONFIRMATION_MODAL }),
     handleRejectAction: () =>
-      dispatch({ type: actionCreators.REJECT_CONFIRMATION_MODAL }),
+      dispatch({ type: actionTypes.REJECT_CONFIRMATION_MODAL }),
     cancelReservation: (id: number) =>
-      dispatch({ type: actionCreators.DELETE_RESERVATION, reservationId: id }),
+      dispatch({ type: actionTypes.DELETE_RESERVATION, reservationId: id }),
     editReservation: (id: number) =>
       dispatch({
-        type: actionCreators.MODIFY_RESERVATION_COMPONENT,
+        type: actionTypes.MODIFY_RESERVATION_COMPONENT,
         reservationId: id,
       }),
     bookReservation: () => {
-      dispatch({ type: actionCreators.BOOK_RESERVATION_COMPONENT });
+      dispatch({ type: actionTypes.BOOK_RESERVATION_COMPONENT });
     },
     showReservation: (id: number) =>
-      dispatch({ type: actionCreators.VIEW_RESERVATION_COMPONENT, id }),
+      dispatch({ type: actionTypes.VIEW_RESERVATION_COMPONENT, id }),
   }),
 });
 
