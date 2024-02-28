@@ -18,7 +18,7 @@ WORKDIR /app
 COPY ./src/ /app/
 COPY ./schema.graphql /app/
 RUN mkdir logs
-COPY ./requirements-docker.txt ./requirements.txt
+COPY ./requirements-deployed.txt ./requirements.txt
 RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
 
 EXPOSE ${RESERVATION_PORT}
