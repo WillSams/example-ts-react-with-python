@@ -2,8 +2,7 @@ name: Build and Deploy
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: ["main"]
+  
 permissions:
   contents: write
 
@@ -24,13 +23,22 @@ jobs:
         npm ci && npm run test
 
   build-and-deploy:
-    depends-on: unit-test-frontend
+    needs: [unit-test-frontend]
+    runs-on: ubuntu-latest    
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20.x'
+
     - name: Build
       run: |
         cd frontend
-        npm run build
+        npm ci && npm run build
 
     - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
           folder: frontend/build
