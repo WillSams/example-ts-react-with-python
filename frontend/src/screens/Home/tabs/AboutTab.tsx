@@ -14,7 +14,7 @@ const AboutTab: React.FC = () => {
           <img
             width={1000}
             height={750}
-            src="/img/default-bkg.jpg"
+            src="./img/default-bkg.jpg"
             alt="Thumbnail [1000x750]"
           />
         </div>
