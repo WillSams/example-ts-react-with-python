@@ -1,4 +1,4 @@
-name: Deploy and Deploy Graphql Api
+name: Build and Deploy Graphql Api
 
 on:
   workflow_dispatch:   # manual trigger
@@ -70,10 +70,9 @@ jobs:
         IMAGE_TAG: ${{ github.sha }}
       run: |
         cd backend
-        echo "Building image...'docker build -t $REMOTE_IMAGE:$IMAGE_TAG $REMOTE_IMAGE:latest .'"
-        echo $PWD
-        docker build -t $REMOTE_IMAGE:$IMAGE_TAG $REMOTE_IMAGE:latest .
-        echo "Pushing image to ECR..."
+        echo "Building image..."
+        docker build . -t $REMOTE_IMAGE:$IMAGE_TAG $REMOTE_IMAGE:latest
+        echo "Pushing image to ECR.."
         docker push $REMOTE_IMAGE:$IMAGE_TAG $REMOTE_IMAGE:latest
 
   deploy-to-ecs:
