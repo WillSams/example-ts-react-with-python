@@ -72,9 +72,9 @@ jobs:
         REMOTE_IMAGE: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
         IMAGE_TAG: ${{ github.sha }}
       run: |
-        cd backend
         echo "Building image..."
-        docker build . -t $REMOTE_IMAGE:$IMAGE_TAG $REMOTE_IMAGE:latest
+        docker build backend/. -t $REMOTE_IMAGE:$IMAGE_TAG
+        docker tag $REMOTE_IMAGE:$IMAGE_TAG $REMOTE_IMAGE:latest
         echo "Pushing image to ECR.."
         docker push $REMOTE_IMAGE:$IMAGE_TAG $REMOTE_IMAGE:latest
 
