@@ -5,7 +5,7 @@ on:
 
 env:
   REGISTRY: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION}}.amazonaws.com
-  IMAGE_NAME: example-hotel-graphql-api
+  IMAGE_NAME: example-acme-hotel-graphql
   TAG: ${{ github.sha }}
   ENV: staging
 
@@ -51,7 +51,7 @@ jobs:
 
     steps:
 
-    - name: Log in to the Container registry
+    - name: Log into AWS
       uses: aws-actions/configure-aws-credentials@v1
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
@@ -64,29 +64,34 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
       
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v1
-      
     - name: Build and push image to ECR
       env:
         REMOTE_IMAGE: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
         IMAGE_TAG: ${{ github.sha }}
       run: |
-        cd backend
         echo "Building image..."
-        docker build . -t $REMOTE_IMAGE:$IMAGE_TAG $REMOTE_IMAGE:latest
+        docker build backend/. -t $REMOTE_IMAGE:$IMAGE_TAG \
+          --build-arg ENV=${{ env.ENV }} \
+
         echo "Pushing image to ECR.."
-        docker push $REMOTE_IMAGE:$IMAGE_TAG $REMOTE_IMAGE:latest
+        docker push $REMOTE_IMAGE:$IMAGE_TAG
 
   deploy-to-ecs:
     needs: build-and-push-image-to-ecr
     runs-on: ubuntu-latest
     steps:
+      - name: Log into AWS
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+          
       - name: Re-deploy Backend Service
         if: success()
         run: |
           aws ecs update-service \
-              --cluster ${ secrets.ECS_CUSTER } \
-              --service ${ secrets.ECS_SERVICE } \
+              --cluster ${{ secrets.ECS_CLUSTER }} \
+              --service ${{ secrets.ECS_SERVICE }} \
               --force-new-deployment \
-              --region ${ secrets.AWS_REGION }
+              --region ${{ secrets.AWS_REGION }}
