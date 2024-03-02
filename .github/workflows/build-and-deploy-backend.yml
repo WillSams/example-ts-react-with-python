@@ -5,7 +5,7 @@ on:
 
 env:
   REGISTRY: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION}}.amazonaws.com
-  IMAGE_NAME: example-hotel-graphql-api
+  IMAGE_NAME: example-acme-hotel-graphql
   TAG: ${{ github.sha }}
   ENV: staging
 
