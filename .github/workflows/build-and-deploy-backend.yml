@@ -86,7 +86,7 @@ jobs:
         if: success()
         run: |
           aws ecs update-service \
-              --cluster ${ secrets.ECS_CUSTER } \
-              --service ${ secrets.ECS_SERVICE } \
+              --cluster ${{ secrets.ECS_CUSTER }} \
+              --service ${{ secrets.ECS_SERVICE }} \
               --force-new-deployment \
-              --region ${ secrets.AWS_REGION }
+              --region ${{ secrets.AWS_REGION }}
