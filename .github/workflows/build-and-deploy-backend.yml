@@ -1,4 +1,4 @@
-name: Deploy Python Backend to Staging Environment
+name: Deploy and Deploy Graphql Api
 
 on:
   workflow_dispatch:   # manual trigger
@@ -81,11 +81,12 @@ jobs:
 
   deploy-to-ecs:
     needs: build-and-push-image-to-ecr
-    - name: Re-deploy Backend Service
-      if: success()
-      run: |
-        aws ecs update-service \
-            --cluster ${ secrets.ECS_CUSTER } \
-            --service ${ secrets.ECS_SERVICE } \
-            --force-new-deployment \
-            --region ${ secrets.AWS_REGION }
+    steps:
+      - name: Re-deploy Backend Service
+        if: success()
+        run: |
+          aws ecs update-service \
+              --cluster ${ secrets.ECS_CUSTER } \
+              --service ${ secrets.ECS_SERVICE } \
+              --force-new-deployment \
+              --region ${ secrets.AWS_REGION }
