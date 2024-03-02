@@ -7,7 +7,7 @@ interface AlertModalProps {
   onClose: () => void;
 }
 
-function AlertModal({ type, message, onClose }: AlertModalProps) {
+const AlertModal = ({ type, message, onClose }: AlertModalProps) => {
   const variant = type === 'danger' ? 'danger' : 'info';
 
   return (
@@ -25,6 +25,6 @@ function AlertModal({ type, message, onClose }: AlertModalProps) {
       </Modal.Footer>
     </Modal>
   );
-}
+};
 
 export default AlertModal;

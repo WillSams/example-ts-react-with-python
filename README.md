@@ -3,12 +3,13 @@
 **TypeScript, Vite, Reactjs, Redux Toolkit, Redux Sagas, Python, FastAPI, GraphQL, AsyncPG, Postgres**
 
 [![Application Unit Tests](https://github.com/WillSams/example-ts-react-with-python/actions/workflows/pr-validate.yml/badge.svg)](https://github.com/WillSams/example-ts-react-with-python/actions/workflows/pr-validate.yml)
+[![React Client Deployment](https://github.com/WillSams/example-ts-react-with-python/actions/workflows/build-and-deploy-frontend.yml/badge.svg)](https://github.com/WillSams/example-ts-react-with-python/actions/workflows/build-and-deploy-frontend.yml)
+[![Graphql Api Deployment](https://github.com/WillSams/example-ts-react-with-python/actions/workflows/build-and-deploy-backend/badge.svg)](https://github.com/WillSams/example-ts-react-with-python/actions/workflows/build-and-deploy-backend.yml)
 
 This example contains a frontend and backend:
 
-- The frontend is a [React](https://react.dev) application using [Bootstrap4](https://getbootstrap.com/docs/4.6/getting-started/introduction/) for view designs.
+- The frontend is a [React](https://react.dev) application using [Bootstrap5](https://getbootstrap.com/docs/5.0/getting-started/introduction/) for view designs.
 - The backend is a [GraphQL API](https://graphql.org) providing the ability to create, delete, and list reservatios plus available rooms for a given date range.
-
 React [JavaScript](https://github.com/WillSams/example-js-react-with-python) and [Express MVC](https://github.com/WillSams/example-mvc-expressjs-with-python) versions of this same idea are available.
 
 **Context**:
@@ -62,7 +63,7 @@ curl http://localhost:$RESERVATION_PORT/development/graphql \
 
 Navigate to [http://localhost:$RESERVATION_PORT/docs](http://localhost:$RESERVATION_PORT/docs).
 
-![text](./frontend/src/public/img/openapi_example.png)
+![text](./frontend/public/img/openapi_example.png)
 
 ## Pre-requisites
 
@@ -79,7 +80,7 @@ The below are optional but highly recommended:
 
 ## Getting Started
 
-First, we'll need to set up our environment variables.  You can do this by either any of the methods mentioned in [/tools/ENV.md](./tools/ENV.md) but I recommend using [Direnv](https://direnv.net/).
+First, we'll need to set up our environment variables.  You can do this by the methods mentioned in [/tools/ENV.md](./tools/ENV.md) but I recommend using [Direnv](https://direnv.net/).
 
 ### Install Python Packages
 
@@ -134,11 +135,13 @@ You can also acces the Ariadne GraphiQL (interactive test playground) instance a
 
 ## Testing
 
-The backend uses [Pytest](https://docs.pytest.org) and the frontend uses [Jest](https://jestjs.io/).  To run these tests, simply execute `npm run test:backend` or `npm run test:frontend', respectively.
+The backend uses [Pytest](https://docs.pytest.org) and the frontend uses [Jest](https://jestjs.io/).  To run these tests, simply execute `npm run test:backend` or `npm run test:frontend`, respectively.
 
 ## Containerization
 
-### Building the Backend Container
+### Building the Backend Container For Local Testing
+
+Not necessary in your development flow but if you want to test the the container:
 
 ```bash
 docker build backend/. -t acme-hotel-example-backend:latest \
@@ -147,7 +150,7 @@ docker build backend/. -t acme-hotel-example-backend:latest \
     --build-arg IS_DEBUG="${IS_DEBUG}" \
     --build-arg SECRET_KEY="$SECRET_KEY" \
     --build-arg REFRESH_SECRET_KEY="$REFRESH_SECRET_KEY" \
-    --build-arg PG_URL="$PG_URL"
+    --build-arg DB_URL="$DB_URL"
 
 # finally, to run a named container
 docker run --name backend-dev -p 8000:80 acme-hotel-example-backend
@@ -162,17 +165,18 @@ CONTAINER_ID=$(docker ps -qf "name=backend-dev" -n 1)
 docker exec $CONTAINER_ID printenv   
 ```
 
-If you need to re-create the container with the same name, do **docker rm <container-name>** (i.e., backend-dev) first.
+## Deployment
 
-### Building the Frontend Container
+This project can be built on [Coherence](withcoherence.com) and deployed to [AWS](), [Azure](), or [GCP]().  The stack built is not cheap, if you don't have free credits you can expect to towards $100 per month.
 
-```bash
-docker build frontend/. -t acme-hotel-example-frontend:latest \
-    --build-arg FRONTEND_PORT="80" \
-    --build-arg NODE_ENV=${NODE_ENV}
+### How to use
 
-# finally, to run a named container
-docker run --name frontend-dev -p 3000:80 acme-hotel-example-frontend
-```
+1. Sign up for an account at [app.withcoherence.com](https://app.withcoherence.com/)
+2. Once you have created an account, create a new application.
+3. On the "App details" page, inside step #2 "Import a repo," click on the "Import feature" link to import a repo into your GitHub account.
+4. Copy and paste this repo's URL `https://github.com/WillSams/example-react-django-project` into the "Your old repository’s clone URL" field.
+5. Give your new repo a name and then click the "Begin import" button.
+6. After the repo has imported, copy and paste the new repo's URL into the "Repo URL" field in Coherence.
+7. Follow the remaining onboarding instructions.
 
-To verify, follow similar steps also explained in the above [Building the Backend Container](#building-the-backend-container) section.
+Coherence will set up your Cloud IDE, automatic preview environments, CI/CD pipelines, and managed cloud infrastructure.

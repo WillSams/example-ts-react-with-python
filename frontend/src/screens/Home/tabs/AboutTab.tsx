@@ -10,11 +10,11 @@ const AboutTab: React.FC = () => {
           reservations and to create new ones.
         </p>
 
-        <div className="container w-1000 d-flex flex-column">
+        <div className="container center-block">
           <img
             width={1000}
             height={750}
-            src="/img/default-bkg.jpg"
+            src="./img/default-bkg.jpg"
             alt="Thumbnail [1000x750]"
           />
         </div>

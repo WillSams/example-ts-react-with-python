@@ -49,13 +49,13 @@ const BookReservationComponent = ({
         </div>
       </div>
       <div data-name="new-reservation-component">
-        <div className="col-lg-12 bg-light full-area-content">
+        <div className="col-lg-12 bg-light full-area-content container">
           <h2>Create a New Reservation</h2>
           <form onSubmit={(e: FormEvent) => handleSubmit(e)}>
-            <table>
+            <table className="container">
               <tbody>
                 <tr>
-                  <td>
+                  <td className="pull-right">
                     <label htmlFor="room_id">Room ID</label>
                   </td>
                   <td>
@@ -76,7 +76,7 @@ const BookReservationComponent = ({
                   </td>
                 </tr>
                 <tr>
-                  <td>
+                  <td className="pull-right">
                     <label htmlFor="checkin_date">Check-in Date</label>
                   </td>
                   <td>
@@ -91,7 +91,7 @@ const BookReservationComponent = ({
                   </td>
                 </tr>
                 <tr>
-                  <td>
+                  <td className="pull-right">
                     <label htmlFor="checkout_date">Check-out Date</label>
                   </td>
                   <td>
@@ -107,6 +107,8 @@ const BookReservationComponent = ({
                 </tr>
               </tbody>
             </table>
+            <br />
+            <br />
             <button type="submit">Create Reservation</button>
           </form>
         </div>
@@ -128,7 +130,7 @@ const screen = ConnectComponent(BookReservationComponent, {
   load: {
     roomIds: () => ({ type: actionTypes.GET_ROOM_IDS }),
   },
-  dispatch: (dispatch: Dispatch) => ({
+  actionCreators: (dispatch: Dispatch) => ({
     createReservation: (formData: any) =>
       dispatch({ type: actionTypes.CREATE_RESERVATION, input: formData }),
     handleCloseAlert: () => dispatch({ type: actionTypes.CLEAR_ALERT }),

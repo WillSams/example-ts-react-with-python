@@ -13,7 +13,7 @@ jobs:
           result-encoding: string
           script: |
             const enforceSemantic = (branchName) => {
-              const semanticFormat = /(feat\W|feature\/|fix\/|chore\/|refactor\/|dependabot\/|docs\/|style\/|test\/)/
+              const semanticFormat = /(feat\W|feature\/|fix\/|chore\/|refactor\/|dependabot\/|docs\/|ci\/|style\/|test\/)/
               if (!semanticFormat.test(currentBranch)) {
                 core.setFailed(
                   `Branch names in PRs should use semantic conventions, e.g. (feat, fix, chore, refactor).  To fix. ` +

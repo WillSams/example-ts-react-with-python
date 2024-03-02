@@ -1,0 +1,33 @@
+backend:
+  dev:
+    command:
+      - python
+      - main.py
+  prod:
+    command:
+      - python
+      - main.py
+  type: backend
+  system:
+    cpu: 2
+    memory: 2G
+    health_check: /health
+  url_path: /
+  repo_path: ./backend
+  resources:
+    - name: db1
+      type: database
+      engine: postgres
+      version: 13
+
+frontend:
+  type: frontend
+  index_file_name: index.html
+  url_path: /
+  repo_path: ./frontend
+  assets_path: build
+
+  local_packages: ["node_modules"]
+  install: ["npm", "install"]
+  build: ["npm", "run", "build"]
+  dev: ["npm", "run", "dev"]

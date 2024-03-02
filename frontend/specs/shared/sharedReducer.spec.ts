@@ -1,11 +1,13 @@
 import reducer, { initialState } from '../../src/shared/sharedReducer'; // Replace 'yourReducer' with the actual file path
-import { actionTypes, } from '../../src/shared/base';
+import { actionTypes } from '../../src/shared/base';
 
 describe('sharedReducer tests', () => {
-  beforeEach(() => { jest.clearAllMocks(); });
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
 
   it('should handle API_REQUEST action', () => {
-    const action = { type: actionTypes.API_REQUEST, };
+    const action = { type: actionTypes.API_REQUEST };
     const newState = reducer(initialState, action);
 
     expect(newState.requestInProgress).toBe(true);
@@ -13,7 +15,7 @@ describe('sharedReducer tests', () => {
   });
 
   it('should handle API_REQUEST_DONE action', () => {
-    const action = { type: actionTypes.API_REQUEST_DONE, };
+    const action = { type: actionTypes.API_REQUEST_DONE };
 
     const newState = reducer(initialState, action);
 
@@ -72,7 +74,7 @@ describe('sharedReducer tests', () => {
   });
 
   it('should handle unknown action type', () => {
-    const action = { type: 'UNKNOWN_ACTION_TYPE', };
+    const action = { type: 'UNKNOWN_ACTION_TYPE' };
     const newState = reducer(initialState, action);
 
     expect(newState).toEqual(initialState);
@@ -100,5 +102,3 @@ describe('sharedReducer tests', () => {
     expect(newState.componentNotFound).toBe(true);
   });
 });
-
-
