@@ -76,7 +76,7 @@ jobs:
         docker build backend/. -t $REMOTE_IMAGE:$IMAGE_TAG
         docker tag $REMOTE_IMAGE:$IMAGE_TAG $REMOTE_IMAGE:latest
         echo "Pushing image to ECR.."
-        docker push $REMOTE_IMAGE:$IMAGE_TAG $REMOTE_IMAGE:latest
+        docker push $REMOTE_IMAGE:latest
 
   deploy-to-ecs:
     needs: build-and-push-image-to-ecr
