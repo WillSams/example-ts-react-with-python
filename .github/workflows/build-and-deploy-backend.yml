@@ -81,6 +81,7 @@ jobs:
 
   deploy-to-ecs:
     needs: build-and-push-image-to-ecr
+    runs-on: ubuntu-latest
     steps:
       - name: Re-deploy Backend Service
         if: success()
