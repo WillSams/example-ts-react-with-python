@@ -68,10 +68,17 @@ jobs:
       env:
         REMOTE_IMAGE: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
         IMAGE_TAG: ${{ github.sha }}
+        ENV: ${{ env.ENV }}
+        SECRET_KEY: ${{ secrets.SECRET_KEY }}
+        REFRESH_SECRET_KEY: ${{ secrets.REFRESH_SECRET_KEY }}
+        PG_URL: ${{ secrets.PG_URL }}
       run: |
         echo "Building image..."
         docker build backend/. -t $REMOTE_IMAGE:$IMAGE_TAG \
-          --build-arg ENV=${{ env.ENV }} \
+          --build-arg ENV="$ENV" \
+          --build-arg SECRET_KEY="$SECRET_KEY" \
+          --build-arg REFRESH_SECRET_KEY="$REFRESH_SECRET_KEY" \
+          --build-arg PG_URL="$PG_URL"
 
         echo "Pushing image to ECR.."
         docker push $REMOTE_IMAGE:$IMAGE_TAG
