@@ -64,20 +64,17 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
       
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v1
-      
     - name: Build and push image to ECR
       env:
         REMOTE_IMAGE: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
         IMAGE_TAG: ${{ github.sha }}
       run: |
         echo "Building image..."
-        docker build backend/. -t $REMOTE_IMAGE:$IMAGE_TAG
-        docker tag $REMOTE_IMAGE:$IMAGE_TAG $REMOTE_IMAGE:latest
+        docker build backend/. -t $REMOTE_IMAGE:$IMAGE_TAG \
+          --build-arg ENV=${{ env.ENV }} \
+
         echo "Pushing image to ECR.."
         docker push $REMOTE_IMAGE:$IMAGE_TAG
-        docker push $REMOTE_IMAGE:latest
 
   deploy-to-ecs:
     needs: build-and-push-image-to-ecr
