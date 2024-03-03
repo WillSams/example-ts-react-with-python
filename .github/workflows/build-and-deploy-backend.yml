@@ -81,7 +81,7 @@ jobs:
           --build-arg PG_URL="$PG_URL"
 
         echo "Pushing image to ECR.."
-        docker push --all-tags $REMOTE_IMAGE:$IMAGE_TAG
+        docker push $REMOTE_IMAGE:$IMAGE_TAG
 
   deploy-to-ecs:
     needs: build-and-push-image-to-ecr
