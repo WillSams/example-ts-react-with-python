@@ -74,14 +74,14 @@ jobs:
         PG_URL: ${{ secrets.PG_URL }}
       run: |
         echo "Building image..."
-        docker build backend/. -t $REMOTE_IMAGE:$IMAGE_TAG \
+        docker build backend/. -t $REMOTE_IMAGE:$IMAGE_TAG -t $REMOTE_IMAGE:latest \
           --build-arg ENV="$ENV" \
           --build-arg SECRET_KEY="$SECRET_KEY" \
           --build-arg REFRESH_SECRET_KEY="$REFRESH_SECRET_KEY" \
           --build-arg PG_URL="$PG_URL"
 
         echo "Pushing image to ECR.."
-        docker push $REMOTE_IMAGE:$IMAGE_TAG
+        docker push --all-tags $REMOTE_IMAGE:$IMAGE_TAG
 
   deploy-to-ecs:
     needs: build-and-push-image-to-ecr
