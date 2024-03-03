@@ -82,6 +82,7 @@ jobs:
 
         echo "Pushing image to ECR.."
         docker push $REMOTE_IMAGE:$IMAGE_TAG
+        docker push $REMOTE_IMAGE:latest
 
   deploy-to-ecs:
     needs: build-and-push-image-to-ecr
