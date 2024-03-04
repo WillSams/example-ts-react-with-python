@@ -21,7 +21,7 @@ interface ConfirmationModalProps {
   handleReject?: () => void;
 }
 
-function ConfirmationModal({
+const ConfirmationModal = ({
   isOpen = false,
   title = '',
   message = '',
@@ -30,7 +30,7 @@ function ConfirmationModal({
   confirmButtonStyle = 'primary',
   handleConfirm,
   handleReject,
-}: ConfirmationModalProps) {
+}: ConfirmationModalProps) => {
   return (
     <Modal show={isOpen} onHide={handleReject}>
       <Modal.Header closeButton>
@@ -47,6 +47,6 @@ function ConfirmationModal({
       </Modal.Footer>
     </Modal>
   );
-}
+};
 
 export default ConfirmationModal;

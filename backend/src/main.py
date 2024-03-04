@@ -58,7 +58,7 @@ def main() -> None:
 
     import uvicorn
 
-    host = "localhost"
+    host = "0.0.0.0"
     port = int(utils.api_port())
     if utils.is_debug():
         uvicorn.run("main:app", host=host, port=port, reload=True)

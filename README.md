@@ -3,6 +3,8 @@
 **TypeScript, Vite, Reactjs, Redux Toolkit, Redux Sagas, Python, FastAPI, GraphQL, AsyncPG, Postgres**
 
 [![Application Unit Tests](https://github.com/WillSams/example-ts-react-with-python/actions/workflows/pr-validate.yml/badge.svg)](https://github.com/WillSams/example-ts-react-with-python/actions/workflows/pr-validate.yml)
+[![React Client Deployment](https://github.com/WillSams/example-ts-react-with-python/actions/workflows/build-and-deploy-frontend.yml/badge.svg)](https://github.com/WillSams/example-ts-react-with-python/actions/workflows/build-and-deploy-frontend.yml)
+[![Graphql Api Deployment](https://github.com/WillSams/example-ts-react-with-python/actions/workflows/build-and-deploy-backend.yml/badge.svg)](https://github.com/WillSams/example-ts-react-with-python/actions/workflows/build-and-deploy-backend.yml)
 
 This example contains a frontend and backend:
 
