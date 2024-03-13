@@ -165,7 +165,7 @@ docker exec $CONTAINER_ID printenv
 
 ## Deployment
 
-This project can be built on [Coherence](withcoherence.com) and deployed to [AWS](), [Azure](), or [GCP]().  The stack built is not cheap, if you don't have free credits you can expect to towards $100 per month.
+This project can be built on [Coherence](withcoherence.com) and deployed to [AWS](https://aws.amazon.com), [Azure](https://azure.microsoft.com), or [GCP](https://cloud.google.com).  The stack built is not cheap, if you don't have free credits you can expect to towards $200 per month.
 
 ### How to use
 
