@@ -1,9 +1,13 @@
-import axios, { AxiosResponse } from 'axios';
-import { Store } from 'redux';
+import axios, {
+  AxiosInstance,
+  AxiosResponse,
+  InternalAxiosRequestConfig,
+} from 'axios';
+import { Store } from '@reduxjs/toolkit';
 
 import { actionTypes } from '@/shared/base';
 
-let instance: any = null;
+let instance: AxiosInstance | null = null;
 
 const createInstance = (url: string, token: string) => {
   return axios.create({
@@ -16,22 +20,25 @@ const createInstance = (url: string, token: string) => {
   });
 };
 
-const handleRequest = (config: any, store: Store) => {
+const handleRequest = (
+  config: InternalAxiosRequestConfig<unknown>,
+  store: Store,
+) => {
   store.dispatch({ type: actionTypes.API_REQUEST });
   return config;
 };
 
-const handleRequestError = (error: any, store: Store) => {
+const handleRequestError = (error: Error, store: Store) => {
   store.dispatch({ type: actionTypes.API_REQUEST_ERROR, error });
   return Promise.reject(error);
 };
 
-const handleResponse = (response: any, store: Store) => {
+const handleResponse = (response: AxiosResponse, store: Store) => {
   store.dispatch({ type: actionTypes.API_REQUEST_DONE });
   return response?.data || response;
 };
 
-const handleResponseError = (error: any, store: Store) => {
+const handleResponseError = (error: Error, store: Store) => {
   const { message, name } = error;
   store.dispatch({ type: actionTypes.API_REQUEST_DONE });
   store.dispatch({
@@ -62,12 +69,13 @@ export const createBaseApi = async (url: string, store: Store) => {
     instance = createInstance(url, tokenValue);
 
     instance.interceptors.request.use(
-      (config: any) => handleRequest(config, store),
-      (error: any) => handleRequestError(error, store),
+      (config: InternalAxiosRequestConfig<unknown>) =>
+        handleRequest(config, store),
+      (error: Error) => handleRequestError(error, store),
     );
     instance.interceptors.response.use(
-      (response: any) => handleResponse(response, store),
-      (error: any) => handleResponseError(error, store),
+      (response: AxiosResponse) => handleResponse(response, store),
+      (error: Error) => handleResponseError(error, store),
     );
 
     return instance;

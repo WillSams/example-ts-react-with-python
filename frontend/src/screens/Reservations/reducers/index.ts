@@ -1,5 +1,6 @@
-import { reducer as editReducer } from './edit';
-import { reducer as newReducer } from './new';
-import { reducer as showReducer } from './show';
+import { reducer as editReducer, EditReservationState } from './edit';
+import { reducer as newReducer, NewReservationState } from './new';
+import { reducer as showReducer, ShowReservationState } from './show';
 
 export { editReducer, newReducer, showReducer };
+export type { EditReservationState, NewReservationState, ShowReservationState };

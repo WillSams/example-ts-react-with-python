@@ -1,17 +1,21 @@
-import { combineReducers, Reducer } from 'redux';
+import { Reducer, combineReducers } from '@reduxjs/toolkit';
+import { RouterState } from 'redux-first-history';
 
-import siteReducers from '@/screens/reducer';
-import sharedReducer from '@/shared/sharedReducer';
+import siteReducers, { SiteState } from '@/screens/reducer';
+import sharedReducer, { SharedState } from '@/shared/sharedReducer';
+
+export type PageState = {
+  site: SiteState;
+  shared: SharedState;
+};
 
 export interface RootState {
-  router: any;
-  site: any;
-  shared: any;
+  router: Reducer<RouterState>;
+  site: Reducer<SiteState>;
+  shared: Reducer<SharedState>;
 }
 
-const rootReducer: (routerReducer: Reducer<any>) => Reducer<RootState> = (
-  routerReducer: Reducer<any>,
-) =>
+const rootReducer = (routerReducer: Reducer<RouterState>) =>
   combineReducers<RootState>({
     router: routerReducer,
     site: siteReducers,

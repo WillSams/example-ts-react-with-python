@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 import { Loading } from '@/shared/components';
 import { default as utils } from '@/shared/utils';
-import { RootState } from '@/rootReducer';
+import { PageState } from '@/rootReducer';
 
 interface Reservation {
   id: number;
@@ -27,7 +27,7 @@ const DefaultTab: React.FC<DefaultTabProps> = ({
   actions = { cancelReservation: () => {} },
 }) => {
   const { cancelReservation } = actions;
-  const loading = useSelector((state: RootState) => state?.site?.home?.loading);
+  const loading = useSelector((state: PageState) => state?.site?.home?.loading);
   return (
     <div data-name="reservations-tab">
       <div className="col-lg-12 bg-dark mx-auto">

@@ -1,21 +1,25 @@
 import {
+  Action,
   actionTypes,
   createComponentReducer,
   onSuccessful,
 } from '@/shared/base';
 
-interface State {
+export interface HomeState {
   reservations: [];
   loading: boolean;
 }
 
-const initialState: State = {
+const initialState: HomeState = {
   reservations: [],
   loading: true,
 };
 
 const actionHandlers = {
-  [onSuccessful(actionTypes.GET_RESERVATIONS)]: (state: State, action: any) => {
+  [onSuccessful(actionTypes.GET_RESERVATIONS)]: (
+    state: HomeState,
+    action: Action,
+  ) => {
     const reservations = action?.response?.data || [];
     return {
       ...state,
@@ -24,8 +28,8 @@ const actionHandlers = {
     };
   },
   [onSuccessful(actionTypes.DELETE_RESERVATION)]: (
-    state: State,
-    action: any,
+    state: HomeState,
+    action: Action,
   ) => {
     const reservations = action?.response?.data || [];
     return {
@@ -36,10 +40,13 @@ const actionHandlers = {
   },
 };
 
-const reducer = createComponentReducer<State>(
+const reducer = createComponentReducer<HomeState>(
   actionTypes.HOME_COMPONENT,
   initialState,
-  actionHandlers,
+  actionHandlers as Record<
+    string,
+    (state: HomeState, action?: Action) => HomeState
+  >,
 );
 
 export { reducer };

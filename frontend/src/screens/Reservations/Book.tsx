@@ -1,14 +1,14 @@
 import { FormEvent, useState } from 'react';
-import { Dispatch } from 'redux';
+import { Dispatch } from '@reduxjs/toolkit';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { ConnectComponent, actionTypes } from '@/shared/base';
 import AlertModal from '@/shared/components/AlertModal';
-import { RootState } from '@/rootReducer';
+import { PageState } from '@/rootReducer';
 
 const BookReservationComponent = ({
-  createReservation = (_formData: any) => {},
+  createReservation = (_formData: unknown) => {},
   handleCloseAlert = () => {},
 }) => {
   const navigate = useNavigate();
@@ -25,7 +25,14 @@ const BookReservationComponent = ({
     navigate('/home');
   };
 
-  const handleInputChange = (e: any) => {
+  interface EventProps {
+    target: {
+      name: string;
+      value: string;
+    };
+  }
+
+  const handleInputChange = (e: EventProps) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -34,11 +41,11 @@ const BookReservationComponent = ({
   };
 
   const roomIds = useSelector(
-    (state: RootState) => state?.site?.newReservations?.roomIds,
+    (state: PageState) => state?.site?.newReservations?.roomIds,
   );
   const alert = {
-    message: useSelector((state: RootState) => state?.shared?.alertMessage),
-    type: useSelector((state: RootState) => state?.shared?.alertType),
+    message: useSelector((state: PageState) => state?.shared?.alertMessage),
+    type: useSelector((state: PageState) => state?.shared?.alertType),
   };
 
   return (
@@ -115,7 +122,7 @@ const BookReservationComponent = ({
       </div>
       {alert.message && (
         <AlertModal
-          type={alert.type}
+          type={alert.type || 'info'}
           message={alert.message}
           onClose={handleCloseAlert}
         />
@@ -126,12 +133,12 @@ const BookReservationComponent = ({
 
 const screen = ConnectComponent(BookReservationComponent, {
   componentName: actionTypes.BOOK_RESERVATION_COMPONENT,
-  state: (state: RootState) => state?.site?.newReservations?.roomIds,
+  state: (state: PageState) => state?.site?.newReservations?.roomIds,
   load: {
     roomIds: () => ({ type: actionTypes.GET_ROOM_IDS }),
   },
   actionCreators: (dispatch: Dispatch) => ({
-    createReservation: (formData: any) =>
+    createReservation: (formData: unknown) =>
       dispatch({ type: actionTypes.CREATE_RESERVATION, input: formData }),
     handleCloseAlert: () => dispatch({ type: actionTypes.CLEAR_ALERT }),
   }),

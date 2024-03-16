@@ -1,6 +1,7 @@
+import { Action } from '@reduxjs/toolkit';
 import { actionTypes, onSuccessful } from './base';
 
-interface State {
+export type SharedState = {
   requestInProgress: boolean;
   count: number;
   alertMessage: string | null;
@@ -13,9 +14,9 @@ interface State {
   confirmationModalText: string;
   confirmationModalCancellationText: string;
   confirmationModalButtonStyle: string;
-}
+};
 
-export const initialState: State = {
+export const initialState: SharedState = {
   requestInProgress: false,
   count: 0,
   alertMessage: null,
@@ -30,8 +31,29 @@ export const initialState: State = {
   confirmationModalButtonStyle: 'primary',
 };
 
+type AlertAction = {
+  type: string;
+  alertType: string;
+  message: string;
+};
+
+type ConfirmationAction = {
+  type: string;
+  isOpen: boolean;
+  title: string;
+  message: string;
+  text: string;
+  cancellationText: string;
+  buttonStyle: string;
+  handleConfirm?: () => void;
+  handleReject?: () => void;
+};
+
 // Basic tracker on when API requests go out and when they are finished
-export default (state: State = initialState, action: any): State => {
+export default (
+  state: SharedState = initialState,
+  action: Action | AlertAction | ConfirmationAction,
+): SharedState => {
   switch (action.type) {
     // api requests
     case actionTypes.API_REQUEST:
@@ -56,8 +78,8 @@ export default (state: State = initialState, action: any): State => {
     case actionTypes.SET_ALERT:
       return {
         ...state,
-        alertMessage: action.message,
-        alertType: action.alertType,
+        alertMessage: (action as AlertAction)?.message,
+        alertType: (action as AlertAction).alertType,
       };
     case actionTypes.CLEAR_ALERT:
       return {
@@ -70,11 +92,13 @@ export default (state: State = initialState, action: any): State => {
       return {
         ...state,
         confirmationModalIsOpen: true,
-        confirmationModalTitle: action.title,
-        confirmationModalMessage: action.message,
-        confirmationModalText: action.text,
-        confirmationModalCancellationText: action.cancellationText,
-        confirmationModalButtonStyle: action.buttonStyle,
+        confirmationModalTitle: (action as ConfirmationAction).title,
+        confirmationModalMessage: (action as ConfirmationAction).message,
+        confirmationModalText: (action as ConfirmationAction).text,
+        confirmationModalCancellationText: (action as ConfirmationAction)
+          .cancellationText,
+        confirmationModalButtonStyle: (action as ConfirmationAction)
+          .buttonStyle,
       };
     case actionTypes.CLOSE_CONFIRMATION_MODAL:
     case actionTypes.CONFIRM_CONFIRMATION_MODAL:

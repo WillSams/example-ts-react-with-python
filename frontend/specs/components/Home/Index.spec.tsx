@@ -1,7 +1,5 @@
-import { screen, fireEvent } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { screen } from '@testing-library/react';
 
-import { RootState } from '@/rootReducer';
 import { initialState as defaultShared } from '@/shared/sharedReducer';
 import HomeComponent from '@/screens/Home';
 
@@ -10,7 +8,7 @@ import { CustomRenderOptions, render } from '../../reactTestHelpers';
 describe('HomeComponent', () => {
   const pathname = `/home`;
   const initialEntries = [pathname];
-  const initialState: RootState = {
+  const initialState: unknown = {
     shared: { ...defaultShared },
     router: { location: { pathname } },
     site: {

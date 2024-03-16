@@ -1,11 +1,11 @@
 import React from 'react';
 import { Col, Nav, Row, Tab } from 'react-bootstrap';
-import { Dispatch } from 'redux';
+import { Dispatch } from '@reduxjs/toolkit';
 import { useSelector } from 'react-redux';
 
-import { RootState } from '@/rootReducer';
 import { actionTypes, ConnectComponent } from '@/shared/base';
 import { AlertModal, ConfirmationModal } from '@/shared/components';
+import { PageState } from '@/rootReducer';
 
 import HomeTabs from './tabs';
 
@@ -23,26 +23,26 @@ const HomeComponent: React.FC<HomeComponentProps> = ({
   handleRejectAction = () => {},
 }) => {
   const alert = {
-    message: useSelector((state: RootState) => state?.shared?.alertMessage),
-    type: useSelector((state: RootState) => state?.shared?.alertType),
+    message: useSelector((state: PageState) => state?.shared?.alertMessage),
+    type: useSelector((state: PageState) => state?.shared?.alertType),
   };
   const confirmation = {
     isOpen: useSelector(
-      (state: RootState) => state?.shared?.confirmationModalIsOpen,
+      (state: PageState) => state?.shared?.confirmationModalIsOpen,
     ),
     message: useSelector(
-      (state: RootState) => state?.shared?.confirmationModalMessage,
+      (state: PageState) => state?.shared?.confirmationModalMessage,
     ),
     canecllationText: useSelector(
-      (state: RootState) => state?.shared?.confirmationModalCancellationText,
+      (state: PageState) => state?.shared?.confirmationModalCancellationText,
     ),
     title: useSelector(
-      (state: RootState) => state?.shared?.confirmationModalTitle,
+      (state: PageState) => state?.shared?.confirmationModalTitle,
     ),
   };
 
   const reservations = useSelector(
-    (state: RootState) => state?.site?.home?.reservations,
+    (state: PageState) => state?.site?.home?.reservations,
   );
   const tabActions = { cancelReservation };
 
@@ -81,7 +81,7 @@ const HomeComponent: React.FC<HomeComponentProps> = ({
       </div>
       {alert.message && (
         <AlertModal
-          type={alert.type}
+          type={alert.type ?? 'info'}
           message={alert.message}
           onClose={handleCloseAlert}
         />
@@ -99,7 +99,7 @@ const HomeComponent: React.FC<HomeComponentProps> = ({
 
 const screen = ConnectComponent(HomeComponent, {
   componentName: actionTypes.HOME_COMPONENT,
-  state: (state: RootState) => state?.site?.home?.reservations ?? [],
+  state: (state: PageState) => state?.site?.home?.reservations ?? [],
   load: {
     reservations: () => ({ type: actionTypes.GET_RESERVATIONS }),
   },

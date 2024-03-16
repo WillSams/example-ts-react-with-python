@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
 
 interface AlertModalProps {
-  type: 'danger' | 'success';
+  type: string;
   message: string;
   onClose: () => void;
 }

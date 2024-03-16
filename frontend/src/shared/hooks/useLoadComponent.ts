@@ -1,9 +1,11 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router';
 
+import { Config, DispatchFromConfig } from '@/shared/base/ConnectComponent';
+
 interface useLoadComponentProps {
-  props: any;
-  config: any;
+  props?: DispatchFromConfig;
+  config?: Config;
 }
 
 const useLoadComponent = (input: useLoadComponentProps) => {

@@ -1,6 +1,5 @@
 import { screen } from '@testing-library/react';
 
-import { RootState } from '@/rootReducer';
 import { initialState as defaultShared } from '@/shared/sharedReducer';
 import BookReservationComponent from '@/screens/Reservations/Book';
 
@@ -10,7 +9,7 @@ describe('BookReservationComponent', () => {
   it(`should render component with rooIds populated for selection`, async () => {
     const pathname = `/reservations/new`;
     const initialEntries = [pathname];
-    const initialState: RootState = {
+    const initialState: unknown = {
       shared: { ...defaultShared },
       router: { location: { pathname } },
       site: {
