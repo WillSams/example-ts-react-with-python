@@ -5,6 +5,8 @@ import {
   onSuccessful,
 } from '@/shared/base';
 
+import { models } from '@/shared/graphql';
+
 export interface NewReservationState {
   roomIds: string[];
   loading: boolean;
@@ -31,7 +33,8 @@ const actionHandlers = {
     state: NewReservationState,
     action: Action,
   ) => {
-    const reservations = action?.response?.data || [];
+    const reservations: models.Reservation[] =
+      (action?.response?.data as models.Reservation[]) || [];
     return {
       ...state,
       reservations,
