@@ -1,20 +1,23 @@
-import { combineReducers, Reducer } from 'redux';
+import { Reducer, combineReducers } from '@reduxjs/toolkit';
 
-import { homeReducer } from '@/screens/Home/reducers';
+import { HomeState, homeReducer } from '@/screens/Home/reducers';
 import {
+  NewReservationState,
   newReducer,
+  ShowReservationState,
   showReducer,
+  EditReservationState,
   editReducer,
 } from '@/screens/Reservations/reducers';
 
-interface RootState {
-  home: any;
-  newReservations: any;
-  showReservations: any;
-  editReservations: any;
+export interface SiteState {
+  home: HomeState;
+  newReservations: NewReservationState;
+  showReservations: ShowReservationState;
+  editReservations: EditReservationState;
 }
 
-const siteReducer: Reducer<RootState> = combineReducers({
+const siteReducer: Reducer<SiteState> = combineReducers({
   home: homeReducer,
   newReservations: newReducer,
   showReservations: showReducer,

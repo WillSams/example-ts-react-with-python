@@ -9,3 +9,12 @@ export { onUnload } from './reducerEvents';
 export { onSuccessful } from './reducerEvents';
 
 export type { ActionTypes } from './actionTypes';
+
+export type Payload = {
+  data: object;
+};
+
+export interface Action {
+  type: string;
+  response?: Payload;
+}

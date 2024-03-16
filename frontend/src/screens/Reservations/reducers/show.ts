@@ -1,16 +1,16 @@
 import { actionTypes, createComponentReducer } from '@/shared/base';
 
-interface EditReservationComponentState {
+export interface ShowReservationState {
   loading: boolean;
 }
 
-const initialState: EditReservationComponentState = {
+const initialState: ShowReservationState = {
   loading: true,
 };
 
 const actionHandlers = {};
 
-const reducer = createComponentReducer<EditReservationComponentState>(
+const reducer = createComponentReducer<ShowReservationState>(
   actionTypes.VIEW_RESERVATION_COMPONENT,
   initialState,
   actionHandlers,

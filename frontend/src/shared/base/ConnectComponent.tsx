@@ -1,11 +1,15 @@
 import React from 'react';
-import { Dispatch } from 'redux';
+import { Dispatch } from '@reduxjs/toolkit';
 import { connect } from 'react-redux';
 
 import { useLoadComponent } from '@/shared/hooks';
 
-type Config = {
-  state: (state: any, ownProps: any) => object;
+export interface DispatchFromConfig {
+  getDispatch?: (() => Dispatch) | unknown;
+}
+
+export type Config = {
+  state: (state: unknown, ownProps: unknown) => object;
   actionCreators?: (dispatch: Dispatch) => object;
   componentName: string;
   load?: object;
@@ -32,7 +36,7 @@ export const ConnectComponent = <P extends object>(
   WrappedComponent: React.ComponentType<P>,
   config: Config,
 ) => {
-  const mapStateToProps = (state: any, ownProps: P) => {
+  const mapStateToProps = (state: unknown, ownProps: P) => {
     const stateFromConfig = config.state;
 
     return {
@@ -40,11 +44,11 @@ export const ConnectComponent = <P extends object>(
     };
   };
   const mapDispatchToProps = (dispatch: Dispatch) => {
-    const dispatchFromConfig: any = config.actionCreators
+    const dispatchFromConfig: DispatchFromConfig = config.actionCreators
       ? config.actionCreators(dispatch)
       : {};
 
-    dispatchFromConfig.getDispatch = () => dispatch;
+    dispatchFromConfig.getDispatch = () => dispatch || {};
 
     return dispatchFromConfig;
   };
@@ -52,5 +56,5 @@ export const ConnectComponent = <P extends object>(
   return connect(
     mapStateToProps,
     mapDispatchToProps,
-  )(loadComponent(WrappedComponent, config) as any);
+  )(loadComponent(WrappedComponent, config) as React.ComponentType<unknown>);
 };

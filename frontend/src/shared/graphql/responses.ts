@@ -1,8 +1,8 @@
 interface CreateReservationResponse {
   data: {
     createReservation: {
-      errors: any;
-      reservations?: any;
+      errors: string[];
+      reservations?: unknown;
     };
   };
 }
@@ -10,8 +10,8 @@ interface CreateReservationResponse {
 interface DeleteReservationResponse {
   data: {
     deleteReservation: {
-      errors: any;
-      reservations?: any;
+      errors: string[];
+      reservations?: unknown;
     };
   };
 }
@@ -19,8 +19,8 @@ interface DeleteReservationResponse {
 interface GetAllRoomsResponse {
   data: {
     getAllRooms: {
-      errors?: any;
-      rooms?: any;
+      errors?: string[];
+      rooms?: unknown;
     };
   };
 }
@@ -28,8 +28,8 @@ interface GetAllRoomsResponse {
 interface GetAllReservationsResponse {
   data: {
     getAllReservations: {
-      errors?: any;
-      reservations?: any;
+      errors?: string[];
+      reservations?: unknown;
     };
   };
 }

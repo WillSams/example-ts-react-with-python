@@ -1,7 +1,6 @@
-import { Middleware, Store } from 'redux';
+import { configureStore, Middleware, Store } from '@reduxjs/toolkit';
 import { createLogger } from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
-import { configureStore } from '@reduxjs/toolkit';
 import { createReduxHistoryContext } from 'redux-first-history';
 import { createBrowserHistory, History } from 'history';
 

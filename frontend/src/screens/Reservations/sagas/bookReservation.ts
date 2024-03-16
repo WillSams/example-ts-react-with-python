@@ -59,7 +59,7 @@ export function* bookReservation(action: BookReservationAction) {
 }
 
 export function* saga() {
-  yield* takeLatest(actionTypes.CREATE_RESERVATION as any, bookReservation);
+  yield* takeLatest(actionTypes.CREATE_RESERVATION, bookReservation);
 }
 
 export default saga;

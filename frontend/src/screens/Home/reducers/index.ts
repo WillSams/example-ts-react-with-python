@@ -1,3 +1,4 @@
-import { reducer as homeReducer } from './home';
+import { reducer as homeReducer, HomeState } from './home';
 
 export { homeReducer };
+export type { HomeState };

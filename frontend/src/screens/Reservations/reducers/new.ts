@@ -1,26 +1,25 @@
 import {
+  Action,
   actionTypes,
   createComponentReducer,
   onSuccessful,
 } from '@/shared/base';
 
-interface State {
+export interface NewReservationState {
   roomIds: string[];
   loading: boolean;
 }
 
-interface Action {
-  type: string;
-  response?: { data: string[] };
-}
-
-const initialState: State = {
+const initialState: NewReservationState = {
   roomIds: [],
   loading: true,
 };
 
 const actionHandlers = {
-  [onSuccessful(actionTypes.GET_ROOM_IDS)]: (state: State, action: Action) => {
+  [onSuccessful(actionTypes.GET_ROOM_IDS)]: (
+    state: NewReservationState,
+    action: Action,
+  ) => {
     const roomIds = action?.response?.data || [];
     return {
       ...state,
@@ -29,7 +28,7 @@ const actionHandlers = {
     };
   },
   [onSuccessful(actionTypes.CREATE_RESERVATION)]: (
-    state: State,
+    state: NewReservationState,
     action: Action,
   ) => {
     const reservations = action?.response?.data || [];
@@ -41,10 +40,13 @@ const actionHandlers = {
   },
 };
 
-const reducer = createComponentReducer<State>(
+const reducer = createComponentReducer<NewReservationState>(
   actionTypes.BOOK_RESERVATION_COMPONENT,
   initialState,
-  actionHandlers,
+  actionHandlers as Record<
+    string,
+    (state: NewReservationState, action?: Action) => NewReservationState
+  >,
 );
 
 export { reducer };

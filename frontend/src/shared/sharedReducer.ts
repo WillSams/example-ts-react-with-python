@@ -1,6 +1,7 @@
+import { Action } from '@reduxjs/toolkit';
 import { actionTypes, onSuccessful } from './base';
 
-interface State {
+export type SharedState = {
   requestInProgress: boolean;
   count: number;
   alertMessage: string | null;
@@ -13,9 +14,9 @@ interface State {
   confirmationModalText: string;
   confirmationModalCancellationText: string;
   confirmationModalButtonStyle: string;
-}
+};
 
-export const initialState: State = {
+export const initialState: SharedState = {
   requestInProgress: false,
   count: 0,
   alertMessage: null,
@@ -31,7 +32,10 @@ export const initialState: State = {
 };
 
 // Basic tracker on when API requests go out and when they are finished
-export default (state: State = initialState, action: any): State => {
+export default (
+  state: SharedState = initialState,
+  action: Action,
+): SharedState => {
   switch (action.type) {
     // api requests
     case actionTypes.API_REQUEST:

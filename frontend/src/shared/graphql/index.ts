@@ -10,3 +10,5 @@ export type {
   GetAllReservationsResponse,
   DeleteReservationResponse,
 } from './responses';
+
+export * as models from './models';

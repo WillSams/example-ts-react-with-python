@@ -1,9 +1,11 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router';
 
+import { Config, DispatchFromConfig } from '@/shared/base/ConnectComponent';
+
 interface useLoadComponentProps {
-  props: any;
-  config: any;
+  props?: DispatchFromConfig;
+  config?: Config;
 }
 
 const useLoadComponent = (input: useLoadComponentProps) => {
@@ -11,7 +13,7 @@ const useLoadComponent = (input: useLoadComponentProps) => {
   const location = useLocation();
 
   useEffect(() => {
-    const dispatch = input?.props?.getDispatch?.();
+    const dispatch = input?.props?.getDispatch?.(); // Add type assertion here
     if (loads) {
       Object.values(loads).forEach((loadAction) => {
         if (typeof loadAction === 'function') {

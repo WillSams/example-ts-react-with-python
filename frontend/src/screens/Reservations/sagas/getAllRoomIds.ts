@@ -1,8 +1,12 @@
 import { call, takeLatest, put } from 'typed-redux-saga';
 
-import { actionTypes, onFailure, onSuccessful } from '../../../shared/base';
-import { fetchQuery, getRoomIdsQuery } from '../../../shared/graphql';
-import { GetAllRoomsResponse } from '@/shared/graphql';
+import { actionTypes, onFailure, onSuccessful } from '@/shared/base';
+import {
+  fetchQuery,
+  getRoomIdsQuery,
+  GetAllRoomsResponse,
+  models,
+} from '@/shared/graphql';
 
 type GetRoomIdsAction = {
   type: string;
@@ -24,8 +28,8 @@ export function* getAllRoomIds(_action: GetRoomIdsAction) {
         `getallreservations-saga-error:  ${JSON.stringify(errors)}`,
       );
     else {
-      const { rooms } = data.getAllRooms || [];
-      const roomIds = rooms?.map((room: any) => room.id);
+      const rooms = data?.getAllRooms?.rooms as [];
+      const roomIds: string[] = rooms?.map((room: models.Room) => room?.id);
 
       yield* put({
         type: onSuccessful(actionTypes.GET_ROOM_IDS),
