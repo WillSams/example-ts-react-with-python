@@ -1,4 +1,4 @@
-const fs = require("fs");
+import fs from "fs";
 
 const clean = () => {
   fs.rmSync("./node_modules", { recursive: true, force: true });

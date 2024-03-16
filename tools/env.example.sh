@@ -1,3 +1,5 @@
+#!/bin/bash
+
 export ENV=development
 export NODE_ENV=${ENV}
 export VITE_ENV=${NODE_ENV}
