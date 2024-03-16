@@ -1,6 +1,6 @@
 ariadne==0.21
 fastapi==0.109.1
-httpx==0.26.0
+httpx==0.27.0
 psycopg2-binary==2.9.9
 pydantic==2.5.3
 python-multipart==0.0.7
