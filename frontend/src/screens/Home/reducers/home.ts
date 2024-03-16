@@ -5,6 +5,8 @@ import {
   onSuccessful,
 } from '@/shared/base';
 
+import { models } from '@/shared/graphql';
+
 export interface HomeState {
   reservations: [];
   loading: boolean;
@@ -20,7 +22,8 @@ const actionHandlers = {
     state: HomeState,
     action: Action,
   ) => {
-    const reservations = action?.response?.data || [];
+    const reservations: models.Reservation[] =
+      (action?.response?.data as models.Reservation[]) || [];
     return {
       ...state,
       reservations,
@@ -31,7 +34,8 @@ const actionHandlers = {
     state: HomeState,
     action: Action,
   ) => {
-    const reservations = action?.response?.data || [];
+    const reservations: models.Reservation[] =
+      (action?.response?.data as models.Reservation[]) || [];
     return {
       ...state,
       reservations,
