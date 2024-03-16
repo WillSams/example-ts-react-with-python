@@ -1,4 +1,4 @@
-export interface ActionTypes {
+interface ActionTypes {
   // Component actions
   LOAD_COMPONENT: string;
   COMPONENT_NOT_FOUND: string;

@@ -36,7 +36,7 @@ describe('newReservation Saga', () => {
     const mockResponse: CreateReservationResponse = {
       data: {
         createReservation: {
-          errors: null,
+          errors: '',
         },
       },
     };

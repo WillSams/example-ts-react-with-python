@@ -81,7 +81,7 @@ const HomeComponent: React.FC<HomeComponentProps> = ({
       </div>
       {alert.message && (
         <AlertModal
-          type={alert.type}
+          type={alert.type ?? 'info'}
           message={alert.message}
           onClose={handleCloseAlert}
         />

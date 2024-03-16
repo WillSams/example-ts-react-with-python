@@ -5,11 +5,11 @@ import { connect } from 'react-redux';
 import { useLoadComponent } from '@/shared/hooks';
 
 export interface DispatchFromConfig {
-  getDispatch?: (() => Dispatch) | unknown;
+  getDispatch?: () => Dispatch;
 }
 
 export type Config = {
-  state: (state: unknown, ownProps: unknown) => object;
+  state: unknown;
   actionCreators?: (dispatch: Dispatch) => object;
   componentName: string;
   load?: object;
@@ -37,7 +37,10 @@ export const ConnectComponent = <P extends object>(
   config: Config,
 ) => {
   const mapStateToProps = (state: unknown, ownProps: P) => {
-    const stateFromConfig = config.state;
+    const stateFromConfig = config.state as (
+      state: unknown,
+      ownProps: P,
+    ) => object;
 
     return {
       ...stateFromConfig(state, ownProps),

@@ -31,10 +31,28 @@ export const initialState: SharedState = {
   confirmationModalButtonStyle: 'primary',
 };
 
+type AlertAction = {
+  type: string;
+  alertType: string;
+  message: string;
+};
+
+type ConfirmationAction = {
+  type: string;
+  isOpen: boolean;
+  title: string;
+  message: string;
+  text: string;
+  cancellationText: string;
+  buttonStyle: string;
+  handleConfirm?: () => void;
+  handleReject?: () => void;
+};
+
 // Basic tracker on when API requests go out and when they are finished
 export default (
   state: SharedState = initialState,
-  action: Action,
+  action: Action | AlertAction | ConfirmationAction,
 ): SharedState => {
   switch (action.type) {
     // api requests
@@ -60,8 +78,8 @@ export default (
     case actionTypes.SET_ALERT:
       return {
         ...state,
-        alertMessage: action.message,
-        alertType: action.alertType,
+        alertMessage: (action as AlertAction)?.message,
+        alertType: (action as AlertAction).alertType,
       };
     case actionTypes.CLEAR_ALERT:
       return {
@@ -74,11 +92,13 @@ export default (
       return {
         ...state,
         confirmationModalIsOpen: true,
-        confirmationModalTitle: action.title,
-        confirmationModalMessage: action.message,
-        confirmationModalText: action.text,
-        confirmationModalCancellationText: action.cancellationText,
-        confirmationModalButtonStyle: action.buttonStyle,
+        confirmationModalTitle: (action as ConfirmationAction).title,
+        confirmationModalMessage: (action as ConfirmationAction).message,
+        confirmationModalText: (action as ConfirmationAction).text,
+        confirmationModalCancellationText: (action as ConfirmationAction)
+          .cancellationText,
+        confirmationModalButtonStyle: (action as ConfirmationAction)
+          .buttonStyle,
       };
     case actionTypes.CLOSE_CONFIRMATION_MODAL:
     case actionTypes.CONFIRM_CONFIRMATION_MODAL:

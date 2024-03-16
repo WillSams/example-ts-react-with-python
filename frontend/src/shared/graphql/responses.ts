@@ -1,7 +1,7 @@
 interface CreateReservationResponse {
   data: {
     createReservation: {
-      errors: string[];
+      errors?: string;
       reservations?: unknown;
     };
   };
@@ -10,7 +10,7 @@ interface CreateReservationResponse {
 interface DeleteReservationResponse {
   data: {
     deleteReservation: {
-      errors: string[];
+      errors?: string;
       reservations?: unknown;
     };
   };
@@ -19,7 +19,7 @@ interface DeleteReservationResponse {
 interface GetAllRoomsResponse {
   data: {
     getAllRooms: {
-      errors?: string[];
+      errors?: string;
       rooms?: unknown;
     };
   };
@@ -28,7 +28,7 @@ interface GetAllRoomsResponse {
 interface GetAllReservationsResponse {
   data: {
     getAllReservations: {
-      errors?: string[];
+      errors?: string;
       reservations?: unknown;
     };
   };

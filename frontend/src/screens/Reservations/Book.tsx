@@ -122,7 +122,7 @@ const BookReservationComponent = ({
       </div>
       {alert.message && (
         <AlertModal
-          type={alert.type}
+          type={alert.type || 'info'}
           message={alert.message}
           onClose={handleCloseAlert}
         />

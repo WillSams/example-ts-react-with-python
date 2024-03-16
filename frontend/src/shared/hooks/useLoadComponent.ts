@@ -13,7 +13,7 @@ const useLoadComponent = (input: useLoadComponentProps) => {
   const location = useLocation();
 
   useEffect(() => {
-    const dispatch = input?.props?.getDispatch?.(); // Add type assertion here
+    const dispatch = input?.props?.getDispatch?.();
     if (loads) {
       Object.values(loads).forEach((loadAction) => {
         if (typeof loadAction === 'function') {

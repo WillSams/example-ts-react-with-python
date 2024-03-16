@@ -1,6 +1,6 @@
 import { waitFor } from '@testing-library/react';
 
-import axios from 'axios';
+import axios, { AxiosInstance } from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
 import { actionTypes, createBaseApi } from '@/shared/base';
@@ -26,7 +26,7 @@ describe('baseApi', () => {
       access_token: 'test-token',
     });
 
-    const baseApi = await createBaseApi(url, mockStore);
+    const baseApi = await createBaseApi(url, mockStore) as AxiosInstance;
     expect(baseApi).toBeTruthy();
 
     mockAxiosAdapter.onGet(`${url}/test`).reply(200, {
