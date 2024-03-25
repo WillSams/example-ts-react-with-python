@@ -28,7 +28,7 @@
     "vite": "^5.1.5"
   },
   "devDependencies": {
-    "@babel/core": "^7.24.0",
+    "@babel/core": "^7.24.3",
     "@jambit/eslint-plugin-typed-redux-saga": "^0.4.0",
     "@testing-library/jest-dom": "^6.4.1",
     "@testing-library/react": "^14.2.1",
